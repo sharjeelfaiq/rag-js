@@ -38,49 +38,29 @@ const apiRateLimiter = rateLimit({
   },
 });
 
-const errorHandler = async (err, req, res, next) => {
+const errorHandler = async (err, _req, res, _next) => {
   const status = err.statusCode || err.status || 500;
   const message = err.message || "Internal Server Error";
   const stack = err.stack || "No stack trace available";
 
-  const { expose = status < 500, headers = {} } = err;
-
   const response = {
     success: false,
-    message: expose || !isProdEnv ? message : "Internal Server Error",
-    status,
-    requestInfo: {
-      method: req.method,
-      url: req.originalUrl,
-      ip: req.ip,
-      userAgent: req.get("User-Agent"),
-      timestamp: new Date().toISOString(),
-    },
-    ...(isProdEnv ? {} : { stack }),
+    message,
+    status: !isProdEnv ? status : undefined,
+    stack: !isProdEnv ? stack : undefined,
   };
 
-  if (Object.keys(headers).length) res.set(headers);
-
-  // Log the full response
   const logMethod = status >= 500 ? "error" : status >= 400 ? "warn" : "info";
+
   logger[logMethod](JSON.stringify(response, null, 2));
 
-  // Send only safe fields to client
-  const { success, message: clientMessage } = response;
-
-  const result = {
-    success,
-    message: clientMessage,
-  };
-
-  res.status(status).json(result);
+  res.status(status).json(response);
 };
 
-const invalidRouteHandler = (req, res) => {
+const invalidRouteHandler = (_req, res) => {
   res.status(404).json({
     success: false,
     message: "Endpoint not found",
-    code: "ENDPOINT_NOT_FOUND",
   });
 };
 
