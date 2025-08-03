@@ -1,0 +1,61 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "format": "prettier --write \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
+    "lint:js": "eslint \"./dist/**/*.js\"",
+    "test": "jest --config=jest.config.ts",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "check circularDeps": "npx madge --circular ./src",
+    "generateTree": "pwsh generateTree.ps1",
+    "generateReadme": "readmeai --repository . --badge-style FLAT-SQUARE --badge-color E92063 --header-style COMPACT --navigation-style ACCORDION --emojis RAINBOW --logo ICE"
+  },
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.0",
+    "supertest": "^7.1.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.3",
+    "colors": "^1.4.0",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "http-errors": "^2.0.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.6",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^6.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.17.0",
+    "xss-clean": "^0.1.4"
+  },
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#constants/*": "./src/constants/*",
+    "#data-access/*": "./src/data-access/*",
+    "#dtos/*": "./src/dtos/*",
+    "#middleware/*": "./src/middleware/*",
+    "#models/*": "./src/models/*",
+    "#modules/*": "./src/modules/*",
+    "#routes/*": "./src/routes/*",
+    "#server/*": "./src/server/*",
+    "#utils/*": "./src/utils/*"
+  }
+}
