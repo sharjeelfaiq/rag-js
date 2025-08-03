@@ -25,16 +25,8 @@ export const userDataAccess = {
   },
 
   write: {
-    user: ({
-      email,
-      password,
-      role,
-    }) => {
-      return UserModel.create({
-        email,
-        password,
-        role,
-      });
+    user: (data) => {
+      return UserModel.create(data);
     },
   },
 
