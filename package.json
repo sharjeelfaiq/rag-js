@@ -8,19 +8,14 @@
     "dev": "nodemon src/index.js",
     "format": "prettier --write \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
     "lint:js": "eslint \"./dist/**/*.js\"",
-    "test": "jest --config=jest.config.ts",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
     "check circularDeps": "npx madge --circular ./src",
-    "generateTree": "pwsh generateTree.ps1",
+    "seed": "node src/scripts/seed.js",
     "generateReadme": "readmeai --repository . --badge-style FLAT-SQUARE --badge-color E92063 --header-style COMPACT --navigation-style ACCORDION --emojis RAINBOW --logo ICE"
   },
   "devDependencies": {
     "eslint": "^9.20.0",
-    "jest": "^30.0.5",
     "nodemon": "^3.1.9",
-    "prettier": "^3.5.0",
-    "supertest": "^7.1.4"
+    "prettier": "^3.5.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
