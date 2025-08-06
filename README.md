@@ -5,7 +5,7 @@
 
 # <code>MERN Backend Starter Kit</code>
 
-<em>A modular, JavaScript-based Express/MongoDB backend template with authentication, email & notification workflows, Swagger docs, and CI scaffolding.</em>
+<em>A modular, JavaScript-based Express/MongoDB backend template with authentication, email & notification workflows, and Swagger docs.</em>
 
 <!-- BADGES -->
 <!-- local repository, no metadata badges. -->
