@@ -1,954 +1,367 @@
-<div id="top">
+# MERN Backend Starter Kit
 
-<!-- HEADER STYLE: COMPACT -->
-<img src="readmeai/assets/logos/ice.svg" width="30%" align="left" style="margin-right: 15px">
+A complete, production-ready Express.js backend template with JWT authentication, email workflows, file uploads, and comprehensive API documentation - perfect for rapid development and commercial projects.
 
-# <code>MERN Backend Starter Kit</code>
+![Version](https://img.shields.io/badge/Version-1.0.0-orange?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+![Node](https://img.shields.io/badge/Node.js-16%2B-green?style=flat-square)
+![MongoDB](https://img.shields.io/badge/MongoDB-4.4%2B-green?style=flat-square)
 
-<em>A modular, JavaScript-based Express/MongoDB backend template with authentication, email & notification workflows, and Swagger docs.</em>
+## 🎯 Project Overview
 
-<!-- BADGES -->
-<!-- local repository, no metadata badges. -->
+This MERN Backend Starter Kit is a comprehensive Express.js server template that provides everything you need to build modern web applications. Built with industry-standard tools and best practices, it saves you weeks of development time by providing a solid, scalable foundation.
 
-<em>Built with the tools and technologies:</em>
+**Perfect for:**
+- 🚀 SaaS applications
+- 🛒 E-commerce backends
+- 📱 Mobile app APIs
+- 🌐 Web application servers
+- ⚡ MVP development
+- 👥 Client projects
 
-<img src="https://img.shields.io/badge/Express-000000.svg?style=flat-square&logo=Express&logoColor=white" alt="Express">
-<img src="https://img.shields.io/badge/JSON-000000.svg?style=flat-square&logo=JSON&logoColor=white" alt="JSON">
-<img src="https://img.shields.io/badge/npm-CB3837.svg?style=flat-square&logo=npm&logoColor=white" alt="npm">
-<img src="https://img.shields.io/badge/Mongoose-F04D35.svg?style=flat-square&logo=Mongoose&logoColor=white" alt="Mongoose">
-<img src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=flat-square&logo=Prettier&logoColor=black" alt="Prettier">
-<img src="https://img.shields.io/badge/.ENV-ECD53F.svg?style=flat-square&logo=dotenv&logoColor=black" alt=".ENV">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript">
-<br>
-<img src="https://img.shields.io/badge/Nodemon-76D04B.svg?style=flat-square&logo=Nodemon&logoColor=white" alt="Nodemon">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat-square&logo=JavaScript&logoColor=black" alt="JavaScript">
-<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat-square&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
-<img src="https://img.shields.io/badge/Cloudinary-3448C5.svg?style=flat-square&logo=Cloudinary&logoColor=white" alt="Cloudinary">
-<img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat-square&logo=ESLint&logoColor=white" alt="ESLint">
+## ⭐ Key Features
 
-<br clear="left"/>
+### 🔒 Complete Authentication System
+- User registration and login with JWT tokens
+- Password reset via email with secure tokens
+- Email verification with OTP codes
+- Token blacklisting for secure logout
+- Input validation and sanitization
 
-## 🌈 Table of Contents
+### 📧 Professional Email System
+- Beautiful HTML email templates (4 different templates included)
+- Transactional email sending with Nodemailer
+- Password reset emails
+- Email verification workflows with OTP
+- Customizable email templates
 
-<details>
-<summary>Table of Contents</summary>
+### 🔔 Notification Management
+- In-app notification system
+- Store and retrieve notifications
+- Mark notifications as read/unread
+- Notification history tracking
 
-- [🌈 Table of Contents](#-table-of-contents)
-- [🔴 Overview](#-overview)
-- [🟠 Features](#-features)
-- [🟡 Project Structure](#-project-structure)
-  - [🟢 Project Index](#-project-index)
-- [🔵 Getting Started](#-getting-started)
-  - [🟣 Prerequisites](#-prerequisites)
-  - [⚫ Installation](#-installation)
-  - [⚪ Usage](#-usage)
-- [🌟 Roadmap](#-roadmap)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
-- [✨ Acknowledgments](#-acknowledgments)
+### 📁 File Upload & Management
+- Cloudinary integration for image uploads
+- Multer middleware for file processing
+- File validation and processing
+- Secure file handling
+- Multiple file format support
 
-</details>
+### 🛡️ Production-Ready Security
+- Helmet security headers protection
+- XSS protection with xss-clean
+- NoSQL injection prevention
+- Rate limiting (100 requests/15min per IP)
+- CORS configuration
+- Request compression and logging
 
----
+### 🏗️ Enterprise-Grade Architecture
+- **8-Layer Modular Architecture** with clear separation of concerns
+- ES6 Module support with clean import paths
+- Separation of concerns for easy testing and maintenance
+- Scalable design patterns for enterprise applications
+- Clean code practices with ESLint and Prettier
 
-## 🔴 Overview
+### 📚 Comprehensive Documentation
+- Complete Swagger API documentation
+- Ready-to-use Postman collection
+- Modular Swagger files per feature
+- Detailed setup instructions
 
-This **MERN Backend Starter Kit** is a fully-typed, modular Express.js server scaffold built with JavaScript and MongoDB. It provides:
+## 🛠️ Technologies Used
 
-- JWT-based authentication (signup, login, password reset, email/OTP verification)
-- Email and notification modules with templated HTML views
-- API documentation via Swagger YAML files and a ready Postman collection
-- Middleware for validation, error handling, file uploads (Cloudinary)
-- GitHub Actions CI for linting and build checks
+- **Backend Framework:** Express.js
+- **Database:** MongoDB with Mongoose ODM
+- **Authentication:** JWT (JSON Web Tokens)
+- **File Upload:** Cloudinary + Multer
+- **Email Service:** Nodemailer
+- **Validation:** Joi
+- **Documentation:** Swagger UI
+- **Security:** Helmet, XSS-Clean, Express-Mongo-Sanitize
+- **Development:** Nodemon, ESLint, Prettier
 
-> **Note:** Real-time WebSocket support (e.g. via `socket.io`) is **not** included by default, but the project’s modular design makes adding a `socket.io` server and namespaces straightforward.
+## 🚀 Quick Start
 
----
+### Prerequisites
 
-## 🟠 Features
+- Node.js (version 16.x or higher)
+- MongoDB (version 4.4 or higher)
+- NPM (version 8.x or higher)
 
-- **Authentication**: Signup/login, JWT issuance & revocation, password reset, email/OTP verification
-- **Email Module**: Send transactional and templated emails (verification, reset password)
-- **Notification Module**: Store and dispatch in-app notifications
-- **Health Checks**: `/health` endpoint for uptime and service diagnostics
-- **Data Access Layer**: Abstracted Mongoose data-access for blacklisted tokens, users, OTPs, notifications
-- **Validation**: Joi-based DTO schemas for request payloads
-- **File Uploads**: Image/file handling via Cloudinary integration
-- **Documentation**: Swagger YAML specs per module + Postman collection included
-- **Tooling**: ESLint, (configure Prettier), nodemon, dev server
-- **CI**: GitHub Actions pipeline for install, lint, and build
+### Installation
 
----
-
-## 🟡 Project Structure
-
-```
-🗂️ mern-backend-starter-js
-├── 🗂️ docs
-│   └── 🗂️ swagger
-│       ├── 🗂️ auth
-│       │   └── 📄 index.yaml
-│       ├── 🗂️ email
-│       │   └── 📄 index.yaml
-│       ├── 🗂️ health
-│       │   └── 📄 index.yaml
-│       ├── 🗂️ notifications
-│       │   └── 📄 index.yaml
-│       ├── 🗂️ users
-│       │   └── 📄 index.yaml
-│       └── 📄 common.yaml
-├── 🗂️ src
-│   ├── 🗂️ config
-│   │   ├── 📄 cloudinary.config.js
-│   │   ├── 📄 database.config.js
-│   │   ├── 📄 env.config.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 logger.config.js
-│   │   ├── 📄 mail.config.js
-│   │   └── 📄 swagger.config.js
-│   ├── 🗂️ constants
-│   │   └── 📄 index.js
-│   ├── 🗂️ data-access
-│   │   ├── 📄 blacklisted-token.data-access.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 notification.data-access.js
-│   │   ├── 📄 otp.data-access.js
-│   │   └── 📄 user.data-access.js
-│   ├── 🗂️ dtos
-│   │   ├── 📄 auth.dto.js
-│   │   ├── 📄 index.js
-│   │   └── 📄 validations.js
-│   ├── 🗂️ middleware
-│   │   ├── 📄 global.middleware.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 upload.middleware.js
-│   │   └── 📄 validate.middleware.js
-│   ├── 🗂️ models
-│   │   ├── 📄 blacklisted-token.model.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 notification.model.js
-│   │   ├── 📄 otp.model.js
-│   │   └── 📄 user.model.js
-│   ├── 🗂️ modules
-│   │   ├── 🗂️ auth
-│   │   │   ├── 📄 auth.controllers.js
-│   │   │   ├── 📄 auth.routes.js
-│   │   │   └── 📄 auth.services.js
-│   │   ├── 🗂️ email
-│   │   │   ├── 📄 email.controllers.js
-│   │   │   ├── 📄 email.routes.js
-│   │   │   └── 📄 email.services.js
-│   │   ├── 🗂️ health
-│   │   │   ├── 📄 health.controllers.js
-│   │   │   ├── 📄 health.routes.js
-│   │   │   └── 📄 health.services.js
-│   │   ├── 🗂️ notification
-│   │   │   ├── 📄 notification.controllers.js
-│   │   │   ├── 📄 notification.routes.js
-│   │   │   └── 📄 notification.services.js
-│   │   ├── 🗂️ otp
-│   │   │   ├── 📄 otp.controllers.js
-│   │   │   ├── 📄 otp.routes.js
-│   │   │   └── 📄 otp.services.js
-│   │   ├── 🗂️ user
-│   │   │   ├── 📄 user.controllers.js
-│   │   │   ├── 📄 user.routes.js
-│   │   │   └── 📄 user.services.js
-│   │   └── 📄 index.js
-│   ├── 🗂️ routes
-│   │   └── 📄 index.js
-│   ├── 🗂️ server
-│   │   └── 📄 index.js
-│   ├── 🗂️ utils
-│   │   ├── 📄 bcrypt.utils.js
-│   │   ├── 📄 email.utils.js
-│   │   ├── 📄 global.utils.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 jwt.utils.js
-│   │   ├── 📄 otp.utils.js
-│   │   └── 📄 username.utils.js
-│   ├── 🗂️ views
-│   │   ├── 🗂️ otp-email
-│   │   │   └── 📄 index.html
-│   │   ├── 🗂️ reset-password
-│   │   │   └── 📄 index.html
-│   │   ├── 🗂️ verification-email
-│   │   │   └── 📄 index.html
-│   │   └── 🗂️ verification-notification
-│   │       └── 📄 index.html
-│   └── 📄 index.js
-├── 📄 eslint.config.js
-├── 📄 LICENSE
-├── 📄 MERN Backend Starter.postman_collection.json
-├── 📄 nodemon.json
-├── 📄 package-lock.json
-├── 📄 package.json
-└── 📄 README.md
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/mern-backend-starter.git
+cd mern-backend-starter
 ```
 
-### 🟢 Project Index
+2. Install dependencies:
+```bash
+npm install
+```
 
-<details open>
-	<summary><b><code>/</code></b></summary>
-	<!-- __root__ Submodule -->
-	<details>
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<div class='directory-path' style='padding: 8px 0; color: #666;'>
-				<code><b>⦿ __root__</b></code>
-			<table style='width: 100%; border-collapse: collapse;'>
-			<thead>
-				<tr style='background-color: #f8f9fa;'>
-					<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-					<th style='text-align: left; padding: 8px;'>Summary</th>
-				</tr>
-			</thead>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/eslint.config.js'>eslint.config.js</a></b></td>
-				</tr>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/generateTree.ps1'>generateTree.ps1</a></b></td>
-				</tr>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/MERN Backend Starter.postman_collection.json'>MERN Backend Starter.postman_collection.json</a></b></td>
-				</tr>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/nodemon.json'>nodemon.json</a></b></td>
-				</tr>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/package-lock.json'>package-lock.json</a></b></td>
-				</tr>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/package.json'>package.json</a></b></td>
-				</tr>
-			</table>
-		</blockquote>
-	</details>
-	<!-- src Submodule -->
-	<details>
-		<summary><b>src</b></summary>
-		<blockquote>
-			<div class='directory-path' style='padding: 8px 0; color: #666;'>
-				<code><b>⦿ src</b></code>
-			<table style='width: 100%; border-collapse: collapse;'>
-			<thead>
-				<tr style='background-color: #f8f9fa;'>
-					<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-					<th style='text-align: left; padding: 8px;'>Summary</th>
-				</tr>
-			</thead>
-				<tr style='border-bottom: 1px solid #eee;'>
-					<td style='padding: 8px;'><b><a href='/src/index.js'>index.js</a></b></td>
-					<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-				</tr>
-			</table>
-			<!-- config Submodule -->
-			<details>
-				<summary><b>config</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.config</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/cloudinary.config.js'>cloudinary.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/database.config.js'>database.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/env.config.js'>env.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/logger.config.js'>logger.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/mail.config.js'>mail.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/config/swagger.config.js'>swagger.config.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- constants Submodule -->
-			<details>
-				<summary><b>constants</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.constants</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/constants/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- data-access Submodule -->
-			<details>
-				<summary><b>data-access</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.data-access</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/data-access/blacklisted-token.data-access.js'>blacklisted-token.data-access.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/data-access/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/data-access/notification.data-access.js'>notification.data-access.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/data-access/otp.data-access.js'>otp.data-access.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/data-access/user.data-access.js'>user.data-access.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- dtos Submodule -->
-			<details>
-				<summary><b>dtos</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.dtos</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/dtos/auth.dto.js'>auth.dto.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/dtos/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/dtos/validations.js'>validations.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- middleware Submodule -->
-			<details>
-				<summary><b>middleware</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.middleware</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/middleware/global.middleware.js'>global.middleware.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/middleware/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/middleware/upload.middleware.js'>upload.middleware.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/middleware/validate.middleware.js'>validate.middleware.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- models Submodule -->
-			<details>
-				<summary><b>models</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.models</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/models/blacklisted-token.model.js'>blacklisted-token.model.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/models/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/models/notification.model.js'>notification.model.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/models/otp.model.js'>otp.model.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/models/user.model.js'>user.model.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- modules Submodule -->
-			<details>
-				<summary><b>modules</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.modules</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/modules/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-					<!-- auth Submodule -->
-					<details>
-						<summary><b>auth</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.auth</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/auth/auth.controllers.js'>auth.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/auth/auth.routes.js'>auth.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/auth/auth.services.js'>auth.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- email Submodule -->
-					<details>
-						<summary><b>email</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.email</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/email/email.controllers.js'>email.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/email/email.routes.js'>email.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/email/email.services.js'>email.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- health Submodule -->
-					<details>
-						<summary><b>health</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.health</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/health/health.controllers.js'>health.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/health/health.routes.js'>health.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/health/health.services.js'>health.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- notification Submodule -->
-					<details>
-						<summary><b>notification</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.notification</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/notification/notification.controllers.js'>notification.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/notification/notification.routes.js'>notification.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/notification/notification.services.js'>notification.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- otp Submodule -->
-					<details>
-						<summary><b>otp</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.otp</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/otp/otp.controllers.js'>otp.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/otp/otp.routes.js'>otp.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/otp/otp.services.js'>otp.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- user Submodule -->
-					<details>
-						<summary><b>user</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.modules.user</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/user/user.controllers.js'>user.controllers.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/user/user.routes.js'>user.routes.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/modules/user/user.services.js'>user.services.js</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-				</blockquote>
-			</details>
-			<!-- routes Submodule -->
-			<details>
-				<summary><b>routes</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.routes</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/routes/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- server Submodule -->
-			<details>
-				<summary><b>server</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.server</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/server/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- utils Submodule -->
-			<details>
-				<summary><b>utils</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.utils</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/bcrypt.utils.js'>bcrypt.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/email.utils.js'>email.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/global.utils.js'>global.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/index.js'>index.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/jwt.utils.js'>jwt.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/otp.utils.js'>otp.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/src/utils/username.utils.js'>username.utils.js</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-			<!-- views Submodule -->
-			<details>
-				<summary><b>views</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ src.views</b></code>
-					<!-- otp-email Submodule -->
-					<details>
-						<summary><b>otp-email</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.views.otp-email</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/views/otp-email/index.html'>index.html</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- reset-password Submodule -->
-					<details>
-						<summary><b>reset-password</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.views.reset-password</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/views/reset-password/index.html'>index.html</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- verification-email Submodule -->
-					<details>
-						<summary><b>verification-email</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.views.verification-email</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/views/verification-email/index.html'>index.html</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-					<!-- verification-notification Submodule -->
-					<details>
-						<summary><b>verification-notification</b></summary>
-						<blockquote>
-							<div class='directory-path' style='padding: 8px 0; color: #666;'>
-								<code><b>⦿ src.views.verification-notification</b></code>
-							<table style='width: 100%; border-collapse: collapse;'>
-							<thead>
-								<tr style='background-color: #f8f9fa;'>
-									<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-									<th style='text-align: left; padding: 8px;'>Summary</th>
-								</tr>
-							</thead>
-								<tr style='border-bottom: 1px solid #eee;'>
-									<td style='padding: 8px;'><b><a href='/src/views/verification-notification/index.html'>index.html</a></b></td>
-									<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-								</tr>
-							</table>
-						</blockquote>
-					</details>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-	<!-- .github Submodule -->
-	<details>
-		<summary><b>.github</b></summary>
-		<blockquote>
-			<div class='directory-path' style='padding: 8px 0; color: #666;'>
-				<code><b>⦿ .github</b></code>
-			<!-- workflows Submodule -->
-			<details>
-				<summary><b>workflows</b></summary>
-				<blockquote>
-					<div class='directory-path' style='padding: 8px 0; color: #666;'>
-						<code><b>⦿ .github.workflows</b></code>
-					<table style='width: 100%; border-collapse: collapse;'>
-					<thead>
-						<tr style='background-color: #f8f9fa;'>
-							<th style='width: 30%; text-align: left; padding: 8px;'>File Name</th>
-							<th style='text-align: left; padding: 8px;'>Summary</th>
-						</tr>
-					</thead>
-						<tr style='border-bottom: 1px solid #eee;'>
-							<td style='padding: 8px;'><b><a href='/.github/workflows/node.js.yml'>node.js.yml</a></b></td>
-							<td style='padding: 8px;'>Code>❯ REPLACE-ME</code></td>
-						</tr>
-					</table>
-				</blockquote>
-			</details>
-		</blockquote>
-	</details>
-</details>
+3. Create environment file:
+```bash
+cp .env.example .env
+```
 
----
+4. Configure your `.env` file with your settings (see [Environment Variables](#-environment-variables))
 
-## 🔵 Getting Started
+5. Start the development server:
+```bash
+npm run dev
+```
 
-### 🟣 Prerequisites
+The server will be available at `http://localhost:5000`
 
-This project requires the following dependencies:
+## 📋 Available Scripts
 
-- **Programming Language:** JavaScript
-- **Package Manager:** Npm
+```bash
+# Development mode with hot reload
+npm run dev
 
-### ⚫ Installation
-
-Build from the source and intsall dependencies:
-
-1. **Clone the repository:**
-
-   ```sh
-   ❯ git clone ../
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```sh
-   ❯ cd
-   ```
-
-3. **Install the dependencies:**
-
-   [![npm][npm-shield]][npm-link]
-
-   [npm-shield]: https://img.shields.io/badge/npm-CB3837.svg?style={badge_style}&logo=npm&logoColor=white
-   [npm-link]: https://www.npmjs.com/
-
-   **Using [npm](https://www.npmjs.com/):**
-
-   ```sh
-   ❯ npm install
-   ```
-
-### ⚪ Usage
-
-Run the project with:
-
-**Using [npm](https://www.npmjs.com/):**
-
-```sh
+# Production mode
 npm start
+
+# Format code with Prettier
+npm run format
+
+# Lint JavaScript files
+npm run lint:js
+
+# Check for circular dependencies
+npm run "check circularDeps"
+
+# Seed database with sample data
+npm run seed
 ```
 
----
+## 🌐 Environment Variables
 
-## 📝 To Do
+Create a `.env` file in the root directory with the following variables:
 
-- [ ] **`Testing Suite`**: Write tests for the project
-- [ ] **`Dockerization/Containerization`**: Dockerize the project
-- [ ] **`CI Integration`**: Integrate CI/CD pipeline
+```env
+# Server Configuration
+PORT=5000
+NODE_ENV=development
 
----
+# Database
+MONGODB_URI=mongodb://localhost:27017/mern-starter
+
+# JWT Secrets
+JWT_SECRET=your-super-secret-jwt-key-here
+JWT_REFRESH_SECRET=your-refresh-secret-here
+JWT_EXPIRES_IN=7d
+JWT_REFRESH_EXPIRES_IN=30d
+
+# Email Configuration (Gmail example)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+EMAIL_FROM=your-email@gmail.com
+
+# Cloudinary (for file uploads)
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# App URLs
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:5000
+```
+
+## 📖 API Documentation
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| POST | `/api/v1/auth/register` | Register new user | No |
+| POST | `/api/v1/auth/login` | User login | No |
+| POST | `/api/v1/auth/logout` | User logout | Yes |
+| POST | `/api/v1/auth/refresh` | Refresh JWT token | No |
+| POST | `/api/v1/auth/forgot-password` | Request password reset | No |
+| POST | `/api/v1/auth/reset-password` | Reset password with token | No |
+| POST | `/api/v1/auth/verify-email` | Verify email with OTP | No |
+| POST | `/api/v1/auth/resend-verification` | Resend verification email | No |
+
+### User Management
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| GET | `/api/v1/users` | Get all users | Yes |
+| GET | `/api/v1/users/:id` | Get user by ID | Yes |
+| PATCH | `/api/v1/users/:id` | Update user | Yes |
+| DELETE | `/api/v1/users/:id` | Delete user | Yes |
+
+### Email System
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| GET | `/api/v1/email/send-verification-token` | Send verification email | Yes |
+| POST | `/api/v1/email/check-verification-token` | Verify verification email | No |
+
+### Notifications
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| GET | `/api/v1/notifications/:userId` | Get user notifications | Yes |
+| PATCH | `/api/v1/notifications/:notiId` | Mark as read | Yes |
+
+### OTP Management
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| POST | `/api/v1/otp/send` | Generate and send OTP | No |
+| POST | `/api/v1/otp/verify` | Verify OTP | No |
+
+### Health Check
+
+| Method | Endpoint | Description | Protected |
+|--------|----------|-------------|-----------|
+| GET | `/health/public` | Public health check | No |
+| GET | `/health/private` | Detailed health check | Yes |
+
+**Interactive API Documentation:** Visit `http://localhost:5000/api-docs` when the server is running.
+
+## 📁 Project Structure
+
+```
+mern-backend-starter/
+├── docs/
+│   └── swagger/             # API documentation
+├── src/
+│   ├── config/              # Configuration files
+│   ├── constants/           # App constants
+│   ├── data-access/         # Database access layer
+│   ├── dtos/               # Data Transfer Objects
+│   ├── middleware/         # Express middleware
+│   ├── models/            # Mongoose models
+│   ├── modules/           # Feature modules
+│   │   ├── auth/          # Authentication module
+│   │   ├── email/         # Email module
+│   │   ├── notification/  # Notification module
+│   │   ├── user/         # User module
+│   │   └── health/       # Health check module
+│   ├── routes/           # Route definitions
+│   ├── server/           # Server setup
+│   ├── utils/            # Utility functions
+│   ├── views/            # Email templates
+│   └── index.js          # Application entry point
+├── .env.example          # Environment template
+├── package.json         # Dependencies & scripts
+└── README.md           # This documentation
+```
+
+## 🧪 Testing
+
+### Using Postman
+
+1. Import the included Postman collection: `MERN Backend Starter.postman_collection.json`
+2. Set up environment variables:
+   - `baseUrl`: `http://localhost:5000`
+   - `token`: (automatically set after login)
+3. Test the endpoints starting with registration/login
+
+### Testing Flow
+
+1. Register a new user → Get verification email
+2. Verify email with OTP → Account activated
+3. Login → Get JWT token (auto-saved)
+4. Test protected routes → Upload files, manage profile
+5. Test password reset → Receive reset email
+6. Test notifications → Create and manage notifications
+
+## 🚀 Deployment
+
+### Environment Setup
+
+For production deployment, ensure you have:
+
+- MongoDB Atlas or hosted MongoDB instance
+- Cloudinary account for file uploads
+- SMTP email service (Gmail, SendGrid, etc.)
+- Environment variables properly configured
+
+### Deployment Platforms
+
+**Heroku:**
+```bash
+heroku create your-app-name
+heroku config:set NODE_ENV=production
+heroku config:set MONGODB_URI=your-mongodb-uri
+# Set other environment variables...
+git push heroku main
+```
+
+**Vercel:**
+```bash
+npm i -g vercel
+vercel
+# Configure environment variables in Vercel dashboard
+```
 
 ## 🤝 Contributing
 
-- **💬 [Join the Discussions](https://LOCAL///discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://LOCAL///issues)**: Submit bugs found or log feature requests for the `` project.
-- **💡 [Submit Pull Requests](https://LOCAL///blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-<details closed>
-<summary>Contributing Guidelines</summary>
+### Development Guidelines
 
-1. **Fork the Repository**: Start by forking the project repository to your LOCAL account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone .
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to LOCAL**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
+- Follow the existing code style (ESLint + Prettier configured)
+- Write meaningful commit messages
+- Update documentation when adding new features
+- Ensure all tests pass before submitting PR
+- Follow the established architecture patterns
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://LOCAL{///}graphs/contributors">
-	  <img src="https://contrib.rocks/image?repo=/">
-   </a>
-</p>
-</details>
+## 🐛 Troubleshooting
 
----
+### Common Issues
 
-## 📜 License
+**MongoDB connection failed:**
+- Verify `MONGODB_URI` in `.env` file
+- Ensure MongoDB service is running
+- Check database user permissions
 
-is protected under the [LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+**JWT token invalid:**
+- Check `JWT_SECRET` is set in `.env`
+- Verify token format: `Bearer {token}`
+- Check token expiration
 
----
+**Email sending failed:**
+- Verify email credentials in `.env`
+- Use App Password for Gmail
+- Check SMTP server settings
 
-## ✨ Acknowledgments
+**File upload not working:**
+- Verify Cloudinary credentials
+- Check file size limits (5MB default)
+- Ensure proper Content-Type headers
 
-- Credit `contributors`, `inspiration`, `references`, etc.
+## 📄 License
 
-<div align="right">
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-[![][back-to-top]](#top)
+## 📞 Support
 
-</div>
+- 📧 Email: your-email@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/mern-backend-starter/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/mern-backend-starter/discussions)
 
-[back-to-top]: https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square
+## 🙏 Acknowledgments
+
+- Express.js team for the awesome framework
+- MongoDB team for the database solution
+- All contributors and users of this starter kit
 
 ---
+
+**Built with ❤️ by Sharjeel Faiq**
+
+If this project helped you, please consider giving it a ⭐ on GitHub!
