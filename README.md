@@ -42,7 +42,6 @@
   - [🟣 Prerequisites](#-prerequisites)
   - [⚫ Installation](#-installation)
   - [⚪ Usage](#-usage)
-  - [🟤 Testing](#-testing)
 - [🌟 Roadmap](#-roadmap)
 - [🤝 Contributing](#-contributing)
 - [📜 License](#-license)
@@ -178,11 +177,7 @@ This **MERN Backend Starter Kit** is a fully-typed, modular Express.js server sc
 │   │   └── 🗂️ verification-notification
 │   │       └── 📄 index.html
 │   └── 📄 index.js
-├── 🗂️ tests
-│   └── 🗂️ utils
-│       └── 📄 jwt.test.js
 ├── 📄 eslint.config.js
-├── 📄 jest.config.js
 ├── 📄 LICENSE
 ├── 📄 MERN Backend Starter.postman_collection.json
 ├── 📄 nodemon.json
@@ -883,16 +878,6 @@ Run the project with:
 
 ```sh
 npm start
-```
-
-### 🟤 Testing
-
-uses the {**test_framework**} test framework. Run the test suite with:
-
-**Using [npm](https://www.npmjs.com/):**
-
-```sh
-npm test
 ```
 
 ---
