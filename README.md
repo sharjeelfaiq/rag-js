@@ -350,9 +350,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📧 Email: your-email@example.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/mern-backend-starter/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/mern-backend-starter/discussions)
+- 📧 Email: sharjeelfaiq816@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/sharjeelfaiq/mern-backend-starter-javascript/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/sharjeelfaiq/mern-backend-starter-javascript/discussions)
 
 ## 🙏 Acknowledgments
 
