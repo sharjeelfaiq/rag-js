@@ -230,30 +230,113 @@ BACKEND_URL=http://localhost:5000
 ## 📁 Project Structure
 
 ```
-mern-backend-starter/
-├── docs/
-│   └── swagger/             # API documentation
-├── src/
-│   ├── config/              # Configuration files
-│   ├── constants/           # App constants
-│   ├── data-access/         # Database access layer
-│   ├── dtos/               # Data Transfer Objects
-│   ├── middleware/         # Express middleware
-│   ├── models/            # Mongoose models
-│   ├── modules/           # Feature modules
-│   │   ├── auth/          # Authentication module
-│   │   ├── email/         # Email module
-│   │   ├── notification/  # Notification module
-│   │   ├── user/         # User module
-│   │   └── health/       # Health check module
-│   ├── routes/           # Route definitions
-│   ├── server/           # Server setup
-│   ├── utils/            # Utility functions
-│   ├── views/            # Email templates
-│   └── index.js          # Application entry point
-├── .env.example          # Environment template
-├── package.json         # Dependencies & scripts
-└── README.md           # This documentation
+🗂️ mern-backend-starter-js
+├── 🗂️ docs
+│   └── 🗂️ swagger
+│       ├── 🗂️ auth
+│       │   └── 📄 index.yaml
+│       ├── 🗂️ email
+│       │   └── 📄 index.yaml
+│       ├── 🗂️ health
+│       │   └── 📄 index.yaml
+│       ├── 🗂️ notifications
+│       │   └── 📄 index.yaml
+│       ├── 🗂️ users
+│       │   └── 📄 index.yaml
+│       └── 📄 common.yaml
+├── 🗂️ src
+│   ├── 🗂️ config
+│   │   ├── 📄 cloudinary.config.js
+│   │   ├── 📄 database.config.js
+│   │   ├── 📄 env.config.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 logger.config.js
+│   │   ├── 📄 mail.config.js
+│   │   └── 📄 swagger.config.js
+│   ├── 🗂️ constants
+│   │   └── 📄 index.js
+│   ├── 🗂️ data-access
+│   │   ├── 📄 blacklisted-token.data-access.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 notification.data-access.js
+│   │   ├── 📄 otp.data-access.js
+│   │   └── 📄 user.data-access.js
+│   ├── 🗂️ dtos
+│   │   ├── 📄 auth.dto.js
+│   │   ├── 📄 index.js
+│   │   └── 📄 validations.js
+│   ├── 🗂️ middleware
+│   │   ├── 🗂️ global-middleware
+│   │   │   ├── 📄 error-handler.js
+│   │   │   ├── 📄 index.js
+│   │   │   └── 📄 invalid-route-handler.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 upload.middleware.js
+│   │   └── 📄 validate.middleware.js
+│   ├── 🗂️ models
+│   │   ├── 📄 blacklisted-token.model.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 notification.model.js
+│   │   ├── 📄 otp.model.js
+│   │   └── 📄 user.model.js
+│   ├── 🗂️ modules
+│   │   ├── 🗂️ auth
+│   │   │   ├── 📄 auth.controllers.js
+│   │   │   ├── 📄 auth.routes.js
+│   │   │   └── 📄 auth.services.js
+│   │   ├── 🗂️ email
+│   │   │   ├── 📄 email.controllers.js
+│   │   │   ├── 📄 email.routes.js
+│   │   │   └── 📄 email.services.js
+│   │   ├── 🗂️ health
+│   │   │   ├── 📄 health.controllers.js
+│   │   │   ├── 📄 health.routes.js
+│   │   │   └── 📄 health.services.js
+│   │   ├── 🗂️ notification
+│   │   │   ├── 📄 notification.controllers.js
+│   │   │   ├── 📄 notification.routes.js
+│   │   │   └── 📄 notification.services.js
+│   │   ├── 🗂️ otp
+│   │   │   ├── 📄 otp.controllers.js
+│   │   │   ├── 📄 otp.routes.js
+│   │   │   └── 📄 otp.services.js
+│   │   ├── 🗂️ user
+│   │   │   ├── 📄 user.controllers.js
+│   │   │   ├── 📄 user.routes.js
+│   │   │   └── 📄 user.services.js
+│   │   └── 📄 index.js
+│   ├── 🗂️ routes
+│   │   └── 📄 index.js
+│   ├── 🗂️ scripts
+│   │   └── 📄 seed.js
+│   ├── 🗂️ server
+│   │   └── 📄 index.js
+│   ├── 🗂️ utils
+│   │   ├── 📄 bcrypt.utils.js
+│   │   ├── 📄 email.utils.js
+│   │   ├── 📄 global.utils.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 jwt.utils.js
+│   │   ├── 📄 otp.utils.js
+│   │   └── 📄 username.utils.js
+│   ├── 🗂️ views
+│   │   ├── 🗂️ otp-email
+│   │   │   └── 📄 index.html
+│   │   ├── 🗂️ reset-password
+│   │   │   └── 📄 index.html
+│   │   ├── 🗂️ verification-email
+│   │   │   └── 📄 index.html
+│   │   └── 🗂️ verification-notification
+│   │       └── 📄 index.html
+│   └── 📄 index.js
+├── 📄 documentation.md
+├── 📄 eslint.config.js
+├── 📄 LICENSE
+├── 📄 MERN Backend Starter.postman_collection.json
+├── 📄 nodemon.json
+├── 📄 package-lock.json
+├── 📄 package.json
+└── 📄 README.md
 ```
 
 ## 🧪 Testing
