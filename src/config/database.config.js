@@ -26,8 +26,8 @@ export const connectDatabase = async () => {
 
     const db = mongoose.connection;
 
-    db.on("error", (err) => {
-      logger.error(`Connection Failed: MongoDB\nerror: ${err.message}`);
+    db.on("error", (error) => {
+      logger.error(`Connection Failed: MongoDB\nerror: ${error.message}`);
     });
 
     db.on("disconnected", () => {

@@ -7,8 +7,8 @@ import { dataAccess } from "#data-access/index.js";
 const { write, read } = dataAccess;
 
 export const otpServices = {
-  send: async (reqBody) => {
-    const { email } = reqBody;
+  send: async (request) => {
+    const { email } = request.body;
 
     const existingUser = await read.userByEmail(email);
     if (!existingUser) {
@@ -36,10 +36,15 @@ export const otpServices = {
     if (!sentEmail) {
       throw createError(500, "Failed to send email.");
     }
+
+    return {
+      success: true,
+      message: "OTP sent successfully",
+    };
   },
 
-  verify: async (reqBody) => {
-    const { email, otp } = reqBody;
+  verify: async (request) => {
+    const { email, otp } = request.body;
 
     const existingUser = await read.userByEmail(email);
     if (!existingUser) {
@@ -63,5 +68,10 @@ export const otpServices = {
     if (!isOTPValid) {
       throw createError(400, "Invalid OTP");
     }
+
+    return {
+      success: true,
+      message: "OTP verified successfully",
+    };
   },
 };

@@ -38,14 +38,15 @@ export const healthServices = {
 
     // Overall system status
     const isHealthy = dbStatus === "healthy" && memoryStatus === "normal";
-    const status = isHealthy ? "healthy" : "degraded";
 
-    const data = {
-      status,
-      timestamp: new Date().toISOString(),
+    if (!isHealthy) {
+      throw createError(503, "System degraded");
+    }
+
+    return {
+      success: true,
+      message: "System operational",
     };
-
-    return data;
   },
 
   checkDetailedHealth: async () => {
@@ -73,23 +74,24 @@ export const healthServices = {
 
     // Overall system status
     const isHealthy = dbStatus === "healthy" && memoryStatus === "normal";
-    const status = isHealthy ? "healthy" : "degraded";
+    if (!isHealthy) {
+      throw createError(503, "System degraded");
+    }
 
     const data = {
-      status,
+      port: PORT,
       timestamp: new Date().toISOString(),
+      uptime: `${Math.floor(process.uptime())}s`,
       responseTime: `${Date.now() - startTime}ms`,
-      database: {
-        status: dbStatus,
-        responseTime: dbResponseTime ? `${dbResponseTime}ms` : null,
-      },
+      environment: isProdEnv ? "Production" : "Development",
       memory: {
         usage: `${memoryMB}MB`,
         status: memoryStatus,
       },
-      environment: isProdEnv ? "Production" : "Development",
-      port: PORT,
-      uptime: `${Math.floor(process.uptime())}s`,
+      database: {
+        status: dbStatus,
+        responseTime: dbResponseTime ? `${dbResponseTime}ms` : null,
+      },
       urls: {
         backend: isProdEnv ? BACKEND_BASE_URL_PROD : BACKEND_BASE_URL_DEV,
         frontend: isProdEnv ? FRONTEND_BASE_URL_PROD : FRONTEND_BASE_URL_DEV,
@@ -106,6 +108,10 @@ export const healthServices = {
       },
     };
 
-    return data;
+    return {
+      success: true,
+      message: "System operational",
+      data,
+    };
   },
 };

@@ -3,9 +3,9 @@ import createError from "http-errors";
 export const globalUtils = {
   // 🟡 For Express middleware or route handlers
   wrapExpressAsync: (fn) =>
-    async (req, res, next) => {
+    async (request, response, next) => {
       try {
-        await fn(req, res, next);
+        await fn(request, response, next);
       } catch (error) {
         next(error);
       }
@@ -16,8 +16,8 @@ export const globalUtils = {
     async (...args) => {
       try {
         await fn(...args);
-      } catch (err) {
-        throw createError(500, err.message);
+      } catch (error) {
+        throw createError(500, error.message);
       }
     },
 

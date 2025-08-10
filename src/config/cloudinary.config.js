@@ -30,9 +30,9 @@ cloudinary.api.ping((error) => {
 
 export const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: (req, file) => {
+  params: (request, file) => {
     const fileType = file.fieldname;
-    const userId = req.body.user;
+    const userId = request.body.user;
     const fileExtension = path.extname(file.originalname).substring(1);
 
     const fields = ["avatar"];

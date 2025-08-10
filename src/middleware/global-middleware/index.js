@@ -48,7 +48,7 @@ export const applyGlobalMiddleware = (app, appRouter) => {
 
   app.use(mongoSanitize()); // Prevents NoSQL injection by removing MongoDB operator characters
 
-  app.use(compression()); // Compresses response bodies to improve performance
+  app.use(compression()); // Compresses responseBody bodies to improve performance
 
   app.use(apiRateLimiter); // Limits repeated requests from the same IP to prevent abuse (rate limiting)
 

@@ -4,8 +4,8 @@ import createError from "http-errors";
 const { read, update } = dataAccess;
 
 export const notificationServices = {
-  read: async (pathParams) => {
-    const { userId } = pathParams;
+  read: async (request) => {
+    const { userId } = request.params;
 
     const data = await read.notificationByUserId(userId);
 
@@ -13,11 +13,15 @@ export const notificationServices = {
       throw createError(500, "Notification retrieval failed");
     }
 
-    return data;
+    return {
+      success: true,
+      message: "Notifications retrieved successfully",
+      data,
+    };
   },
 
-  updateById: async (pathParams) => {
-    const { notiId } = pathParams;
+  updateById: async (request) => {
+    const { notiId } = request.params;
 
     const data = await update.notificationById(notiId);
 
@@ -25,6 +29,10 @@ export const notificationServices = {
       throw createError(500, "Notification update failed");
     }
 
-    return data;
+    return {
+      success: true,
+      message: "Notification updated successfully",
+      data,
+    };
   },
 };

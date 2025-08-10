@@ -7,8 +7,8 @@ import { backendUrl } from "#constants/index.js";
 const { write, read, update } = dataAccess;
 
 export const authServices = {
-  signUp: async (reqBody) => {
-    const { email, password, role } = reqBody;
+  signUp: async (request) => {
+    const { email, password, role } = request.body;
 
     const existingEmail = await read.userByEmail(email);
 
@@ -83,10 +83,15 @@ export const authServices = {
         },
       });
     }
+
+    return {
+      success: true,
+      message: "Signed up successfully. Please verify your email address.",
+    };
   },
 
-  signIn: async (reqBody) => {
-    const { email, password } = reqBody;
+  signIn: async (request) => {
+    const { email, password } = request.body;
 
     const user = await read.userByEmail(email);
 
@@ -190,11 +195,15 @@ export const authServices = {
       accessToken,
     };
 
-    return data;
+    return {
+      success: true,
+      message: "Signed in successfully.",
+      data,
+    };
   },
 
-  signOut: async (reqHeaders) => {
-    const { authorization } = reqHeaders;
+  signOut: async (request) => {
+    const { authorization } = request.headers;
 
     const accessToken = authorization
       ? authorization.replace("Bearer ", "")
@@ -235,10 +244,15 @@ export const authServices = {
         }
       );
     }
+
+    return {
+      success: true,
+      message: "Signed out successfully.",
+    };
   },
 
-  requestPasswordReset: async (reqBody) => {
-    const { email } = reqBody;
+  requestPasswordReset: async (request) => {
+    const { email } = request.body;
 
     const existingUser = await read.userByEmail(email);
 
@@ -285,10 +299,15 @@ export const authServices = {
         },
       });
     }
+
+    return {
+      success: true,
+      message: "Reset password email sent successfully.",
+    };
   },
 
-  updatePassword: async (reqBody) => {
-    const { password, resetToken } = reqBody;
+  updatePassword: async (request) => {
+    const { password, resetToken } = request.body;
 
     const decodedToken = jwtUtils.verify(resetToken);
 
@@ -321,5 +340,10 @@ export const authServices = {
         context: { field: "password" },
       });
     }
+
+    return {
+      success: true,
+      message: "Password updated successfully.",
+    };
   },
 };

@@ -4,29 +4,13 @@ import { otpServices } from "./otp.services.js";
 const { wrapExpressAsync } = globalUtils;
 
 export const otpControllers = {
-  send: wrapExpressAsync(async (req, res) => {
-    const { body: reqBody } = req;
-
-    await otpServices.send(reqBody);
-
-    const response = {
-      success: true,
-      message: "OTP sent successfully",
-    };
-
-    res.status(200).json(response);
+  send: wrapExpressAsync(async (request, response) => {
+    const responseBody = await otpServices.send(request);
+    response.status(200).json(responseBody);
   }),
 
-  verify: wrapExpressAsync(async (req, res) => {
-    const { body: reqBody } = req;
-
-    await otpServices.verify(reqBody);
-
-    const response = {
-      success: true,
-      message: "OTP verified successfully",
-    };
-
-    res.status(200).json(response);
+  verify: wrapExpressAsync(async (request, response) => {
+    const responseBody = await otpServices.verify(request);
+    response.status(200).json(responseBody);
   }),
 };

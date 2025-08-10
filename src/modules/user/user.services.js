@@ -8,11 +8,15 @@ export const userServices = {
   getAll: async () => {
     const users = await read.users();
 
-    return users;
+    return {
+      success: true,
+      message: "Users retrieved successfully",
+      data: users,
+    };
   },
 
-  getById: async (pathParams) => {
-    const { id } = pathParams;
+  getById: async (request) => {
+    const { id } = request.params;
 
     const user = await read.userById(id);
 
@@ -20,12 +24,16 @@ export const userServices = {
       throw createError(404, "User not found");
     }
 
-    return user;
+    return {
+      success: true,
+      message: "User retrieved successfully",
+      data: user,
+    };
   },
 
-  updateById: async (pathParams, reqBody, reqFiles) => {
-    const { id } = pathParams;
-    const data = { ...reqBody, ...reqFiles };
+  updateById: async (request) => {
+    const { id } = request.params;
+    const data = { ...request.body, ...request.files };
 
     const existingUser = await read.userById(id);
 
@@ -39,16 +47,25 @@ export const userServices = {
       throw createError(500, "User update failed");
     }
 
-    return updatedUser;
+    return {
+      success: true,
+      message: "User updated successfully",
+      data: updatedUser,
+    };
   },
 
-  deleteById: async (pathParams) => {
-    const { id } = pathParams;
+  deleteById: async (request) => {
+    const { id } = request.params;
 
     const user = await remove.userById(id);
 
     if (!user) {
       throw createError(404, "User not found");
     }
+
+    return {
+      success: true,
+      message: "User deleted successfully",
+    };
   },
 };

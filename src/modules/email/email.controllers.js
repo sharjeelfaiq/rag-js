@@ -4,24 +4,13 @@ import { emailServices } from "./email.services.js";
 const { wrapExpressAsync } = globalUtils;
 
 export const emailControllers = {
-  checkVerificationToken: wrapExpressAsync(async (req, res) => {
-    const { query: queryParams } = req;
-
-    const emailHtml = await emailServices.checkVerificationToken(queryParams);
-
-    res.status(200).send(emailHtml);
+  checkVerificationToken: wrapExpressAsync(async (request, response) => {
+    const responseBody = await emailServices.checkVerificationToken(request);
+    response.status(200).send(responseBody);
   }),
 
-  sendVerificationToken: wrapExpressAsync(async (req, res) => {
-    const { body: reqBody } = req;
-
-    await emailServices.sendVerificationToken(reqBody);
-
-    const response = {
-      success: true,
-      message: "Verification email sent successfully",
-    };
-
-    res.status(200).json(response);
+  sendVerificationToken: wrapExpressAsync(async (request, response) => {
+    const responseBody = await emailServices.sendVerificationToken(request);
+    response.status(200).json(responseBody);
   }),
 };

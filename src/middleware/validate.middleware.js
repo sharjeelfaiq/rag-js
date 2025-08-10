@@ -6,8 +6,8 @@ const { wrapExpressAsync } = globalUtils;
 
 export const validate = {
   dto: (schema) =>
-    wrapExpressAsync(async (req, _, next) => {
-      const { value, error } = schema.validate(req.body, {
+    wrapExpressAsync(async (request, _, next) => {
+      const { value, error } = schema.validate(request.body, {
         abortEarly: false,
       });
 
@@ -19,12 +19,12 @@ export const validate = {
         );
       }
 
-      req.body = value;
+      request.body = value;
       next();
     }),
 
-  accessToken: wrapExpressAsync(async (req, _, next) => {
-    const authHeader = req.headers.authorization;
+  accessToken: wrapExpressAsync(async (request, _, next) => {
+    const authHeader = request.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       throw createError(401, "Authorization token missing or malformed.");
@@ -34,17 +34,17 @@ export const validate = {
 
     const decodedToken = jwtUtils.verify(accessToken);
 
-    req.user = decodedToken;
+    request.user = decodedToken;
     next();
   }),
 
   authRole: (authorizedRole) =>
-    wrapExpressAsync(async (req, _, next) => {
-      if (!req.user) {
+    wrapExpressAsync(async (request, _, next) => {
+      if (!request.user) {
         throw createError(401, "Authentication required.");
       }
 
-      if (req.user.role !== authorizedRole) {
+      if (request.user.role !== authorizedRole) {
         throw createError(
           403,
           `Access denied: ${authorizedRole} role required.`
