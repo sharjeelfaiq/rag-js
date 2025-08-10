@@ -4,14 +4,14 @@ const { Schema, model } = mongoose;
 
 const BlacklistedTokenSchema = new Schema(
   {
-    user: {
+    userId: {
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: false,
       immutable: true,
     },
 
-    token: {
+    accessToken: {
       type: String,
       required: true,
       unique: true,

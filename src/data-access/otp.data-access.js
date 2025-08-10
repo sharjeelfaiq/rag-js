@@ -8,10 +8,12 @@ export const otpDataAccess = {
   },
 
   write: {
-    otp: async ({ otpHash, id, expiresAt }) => {
+    otp: async (data) => {
+      const { id, otpHash, expiresAt } = data;
+
       return await OTPModel.create({
-        otpHash,
         id,
+        otpHash,
         expiresAt,
       });
     },

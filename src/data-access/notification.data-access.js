@@ -10,7 +10,9 @@ export const notificationDataAccess = {
   },
 
   write: {
-    notification: (userId, message) => {
+    notification: (data) => {
+      const { userId, message } = data;
+
       return NotificationModel.create({
         user: userId,
         message,
@@ -19,11 +21,13 @@ export const notificationDataAccess = {
   },
 
   update: {
-    notificationById: (notiId) => {
+    notificationById: (data) => {
+      const { notiId, readStatus } = data;
+
       return NotificationModel.findByIdAndUpdate(
         notiId,
-        { $set: { read: true } },
-        { new: true }, // returns the updated document
+        { $set: { read: readStatus } },
+        { new: true } // returns the updated document
       ).exec();
     },
   },

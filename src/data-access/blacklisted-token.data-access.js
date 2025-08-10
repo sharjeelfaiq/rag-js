@@ -1,17 +1,13 @@
 import { BlacklistedTokenModel } from "#models/index.js";
 
 export const blacklistedTokenDataAccess = {
-  read: {
-    blacklistedToken: (token) => {
-      return BlacklistedTokenModel.findOne({ token }).exec();
-    },
-  },
-
   write: {
-    blacklistedToken: (token, id, expiresAt) => {
+    blacklistedToken: (data) => {
+      const { accessToken, userId, expiresAt } = data;
+
       return BlacklistedTokenModel.create({
-        token,
-        userId: id,
+        accessToken,
+        userId,
         expiresAt,
       });
     },

@@ -26,12 +26,16 @@ export const userDataAccess = {
 
   write: {
     user: (data) => {
-      return UserModel.create(data);
+      const { email, password, role } = data;
+
+      return UserModel.create({ email, password, role });
     },
   },
 
   update: {
-    userById: (id, userData) => {
+    userById: (data) => {
+      const { id, userData } = data;
+
       if (!isValidObjectId(id)) {
         throw createError(400, "Invalid user ID format.");
       }

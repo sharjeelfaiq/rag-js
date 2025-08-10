@@ -148,11 +148,13 @@ export const authServices = {
 
     const expiresAt = new Date(Date.now() + 60 * 60 * 1000).getTime(); // 1-hour expiration
 
-    const blacklistedToken = await write.blacklistedToken(
+    const blacklistedTokenData = {
       accessToken,
-      id,
-      expiresAt
-    );
+      userId: id,
+      expiresAt,
+    };
+
+    const blacklistedToken = await write.blacklistedToken(blacklistedTokenData);
 
     if (!blacklistedToken) {
       throw createError(
