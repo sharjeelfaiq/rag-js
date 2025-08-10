@@ -17,13 +17,17 @@ export const otpServices = {
 
     const { rawOTP, hashedOTP, expiresAt } = await generateOTP();
 
-    const isOTPSaved = await write.otp({
+    const otpData = {
       otpHash: hashedOTP,
-      id: existingUser._id.toString(),
+      id: existingUser._id,
       expiresAt,
-    });
+    };
+
+    const isOTPSaved = await write.otp(otpData);
 
     if (!isOTPSaved) {
+      remove.otp(existingUser._id);
+
       throw createError(500, "Failed to save OTP.");
     }
 

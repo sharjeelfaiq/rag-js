@@ -2,7 +2,7 @@ import createError from "http-errors";
 
 export const globalUtils = {
   // 🟡 For Express middleware or route handlers
-  wrapExpressAsync: (fn) =>
+  routesAsyncHandler: (fn) =>
     async (request, response, next) => {
       try {
         await fn(request, response, next);
@@ -12,7 +12,7 @@ export const globalUtils = {
     },
 
   // 🔵 For general top-level async functions
-  wrapGeneralAsync: (fn) =>
+  generalAsyncHandler: (fn) =>
     async (...args) => {
       try {
         await fn(...args);

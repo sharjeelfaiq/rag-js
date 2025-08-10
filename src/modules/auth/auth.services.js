@@ -4,7 +4,7 @@ import { jwtUtils, sendEmail, bcryptUtils } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
 import { backendUrl } from "#constants/index.js";
 
-const { write, read, update } = dataAccess;
+const { write, read, update, remove } = dataAccess;
 
 export const authServices = {
   signUp: async (request) => {
@@ -13,30 +13,23 @@ export const authServices = {
     const existingEmail = await read.userByEmail(email);
 
     if (existingEmail) {
-      throw createError(400, "A user with this email already exists.", {
-        expose: true,
-        code: "EMAIL_EXISTS",
-        field: "email",
-        operation: "sign_up",
-        context: { email, role },
-      });
+      throw createError(400, "A user with this email already exists.");
     }
 
     const hashedPassword = await bcryptUtils.hash(password, { rounds: 12 });
 
-    const newUser = await write.user({
+    const registrationData = {
       email,
       password: hashedPassword,
       role,
-    });
+    };
+
+    const newUser = await write.user(registrationData);
 
     if (!newUser) {
-      throw createError(500, "Failed to create a new user.", {
-        expose: false,
-        code: "USER_CREATION_FAILED",
-        operation: "write.user",
-        context: { email, role },
-      });
+      remove.user(newUser._id);
+
+      throw createError(500, "Failed to create a new user.");
     }
 
     const verificationToken = jwtUtils.generate(
@@ -45,23 +38,11 @@ export const authServices = {
     );
 
     if (!verificationToken) {
-      throw createError(500, "An error occurred while generating the token.", {
-        expose: false,
-        code: "TOKEN_GENERATION_FAILED",
-        operation: "Account Verification",
-        id: newUser._id,
-        context: { purpose: "email_verification" },
-      });
+      throw createError(500, "An error occurred while generating the token.");
     }
 
     if (!backendUrl) {
-      throw createError(500, "Backend URL is not defined.", {
-        expose: false,
-        code: "BACKEND_URL_NOT_DEFINED",
-        operation: "Account Verification",
-        id: newUser._id,
-        context: { purpose: "email_verification" },
-      });
+      throw createError(500, "Backend URL is not defined.");
     }
 
     const sentEmail = await sendEmail("verification-email", {
@@ -72,16 +53,7 @@ export const authServices = {
     });
 
     if (!sentEmail) {
-      throw createError(500, "Failed to send the welcome email.", {
-        expose: false,
-        code: "EMAIL_SEND_FAILED",
-        operation: "Sending Verification Email",
-        id: newUser._id,
-        context: {
-          emailType: "verify-email",
-          recipient: email,
-        },
-      });
+      throw createError(500, "Failed to send the welcome email.");
     }
 
     return {
@@ -96,13 +68,7 @@ export const authServices = {
     const user = await read.userByEmail(email);
 
     if (!user) {
-      throw createError(401, "Invalid credentials.", {
-        expose: true,
-        code: "INVALID_CREDENTIALS",
-        field: "email",
-        operation: "sign_in",
-        headers: { "www-authenticate": "Bearer" },
-      });
+      throw createError(401, "Invalid credentials.");
     }
 
     const userId = user._id;
@@ -115,17 +81,7 @@ export const authServices = {
       );
 
       if (!verificationToken) {
-        throw createError(
-          500,
-          "An error occurred while generating the token.",
-          {
-            expose: false,
-            code: "TOKEN_GENERATION_FAILED",
-            operation: "jwtUtils.generate",
-            id: userId,
-            context: { purpose: "email_verification" },
-          }
-        );
+        throw createError(500, "An error occurred while generating the token.");
       }
 
       // Send verification email
@@ -136,42 +92,20 @@ export const authServices = {
       });
 
       if (!sentEmail) {
-        throw createError(500, "Failed to send the verification email.", {
-          expose: false,
-          code: "EMAIL_SEND_FAILED",
-          operation: "sendEmail",
-          id: userId,
-          context: {
-            emailType: "verification-email",
-            recipient: email,
-          },
-        });
+        throw createError(500, "Failed to send the verification email.");
       }
 
       // Then throw error informing the user
       throw createError(
         403,
-        "Email not verified. A new verification link has been sent to your inbox.",
-        {
-          expose: true,
-          code: "EMAIL_NOT_VERIFIED",
-          id: userId,
-          operation: "sign_in",
-          context: { action: "verify_email" },
-        }
+        "Email not verified. A new verification link has been sent to your inbox."
       );
     }
 
     const isPasswordValid = await bcryptUtils.compare(password, user.password);
 
     if (!isPasswordValid) {
-      throw createError(401, "Invalid credentials.", {
-        expose: true,
-        code: "INVALID_CREDENTIALS",
-        field: "password",
-        operation: "sign_in",
-        headers: { "www-authenticate": "Bearer" },
-      });
+      throw createError(401, "Invalid credentials.");
     }
 
     const accessToken = jwtUtils.generate(
@@ -180,13 +114,7 @@ export const authServices = {
     );
 
     if (!accessToken) {
-      throw createError(500, "Token generation failed.", {
-        expose: false,
-        code: "TOKEN_GENERATION_FAILED",
-        operation: "jwtUtils.generate",
-        id: userId,
-        context: { role: user.role, purpose: "authentication" },
-      });
+      throw createError(500, "Token generation failed.");
     }
 
     const data = {
@@ -212,12 +140,7 @@ export const authServices = {
     const existingBlacklistedToken = await read.blacklistedToken(accessToken);
 
     if (existingBlacklistedToken) {
-      throw createError(400, "Token is already blacklisted.", {
-        expose: true,
-        code: "TOKEN_BLACKLISTED",
-        operation: "read.blacklistedToken",
-        context: { accessToken },
-      });
+      throw createError(400, "Token is already blacklisted.");
     }
 
     const decodedToken = jwtUtils.verify(accessToken);
@@ -234,14 +157,7 @@ export const authServices = {
     if (!blacklistedToken) {
       throw createError(
         500,
-        "An error occurred while blacklisting the accessToken.",
-        {
-          expose: false,
-          code: "TOKEN_BLACKLIST_FAILED",
-          operation: "write.blacklistedToken",
-          id,
-          context: { expiresAt: expiresAt.toString() },
-        }
+        "An error occurred while blacklisting the accessToken."
       );
     }
 
@@ -257,13 +173,7 @@ export const authServices = {
     const existingUser = await read.userByEmail(email);
 
     if (!existingUser) {
-      throw createError(404, "User not found", {
-        expose: true,
-        code: "USER_NOT_FOUND",
-        field: "email",
-        operation: "forget_password",
-        context: { email },
-      });
+      throw createError(404, "User not found");
     }
 
     const resetToken = jwtUtils.generate(
@@ -272,13 +182,7 @@ export const authServices = {
     );
 
     if (!resetToken) {
-      throw createError(500, "Failed to generate reset token", {
-        expose: false,
-        code: "TOKEN_GENERATION_FAILED",
-        operation: "jwtUtils.generate",
-        id: existingUser._id,
-        context: { purpose: "password_reset" },
-      });
+      throw createError(500, "Failed to generate reset token");
     }
 
     const sentEmail = await sendEmail("reset-password", {
@@ -288,16 +192,7 @@ export const authServices = {
     });
 
     if (!sentEmail) {
-      throw createError(500, "Failed to send reset password email", {
-        expose: false,
-        code: "EMAIL_SEND_FAILED",
-        operation: "sendEmail",
-        id: existingUser._id,
-        context: {
-          emailType: "reset-password",
-          recipient: email,
-        },
-      });
+      throw createError(500, "Failed to send reset password email");
     }
 
     return {
@@ -316,13 +211,7 @@ export const authServices = {
     const existingUser = await read.userById(id);
 
     if (!existingUser) {
-      throw createError(404, "User not found", {
-        expose: true,
-        code: "USER_NOT_FOUND",
-        field: "userId",
-        id,
-        operation: "update_password",
-      });
+      throw createError(404, "User not found");
     }
 
     const hashedPassword = await bcryptUtils.hash(password, { rounds: 12 });
@@ -332,13 +221,7 @@ export const authServices = {
     });
 
     if (!isPasswordUpdated) {
-      throw createError(500, "Password update failed", {
-        expose: false,
-        code: "PASSWORD_UPDATE_FAILED",
-        operation: "update.userById",
-        id,
-        context: { field: "password" },
-      });
+      throw createError(500, "Password update failed");
     }
 
     return {

@@ -13,10 +13,7 @@ export const emailServices = {
     if (!verificationToken || typeof verificationToken !== "string") {
       throw createError(
         400,
-        "Verification token is required and must be a string",
-        {
-          expose: true,
-        }
+        "Verification token is required and must be a string"
       );
     }
 
@@ -25,13 +22,7 @@ export const emailServices = {
     const { id } = decodedToken;
 
     if (!id) {
-      throw createError(400, "Token does not contain the user id", {
-        expose: true,
-        code: "INVALID_TOKEN_PAYLOAD",
-        field: "verificationToken",
-        operation: "email_verification",
-        context: { tokenDecoded: !!decodedToken },
-      });
+      throw createError(400, "Token does not contain the user id");
     }
 
     const isUserUpdated = await update.userById(id, {
@@ -39,22 +30,11 @@ export const emailServices = {
     });
 
     if (!isUserUpdated) {
-      throw createError(500, "An error occurred while verifying the email", {
-        expose: false,
-        code: "EMAIL_VERIFICATION_FAILED",
-        operation: "update.userById",
-        userId: id,
-        context: { field: "isEmailVerified" },
-      });
+      throw createError(500, "An error occurred while verifying the email");
     }
 
     if (!frontendUrl) {
-      throw createError(500, "Frontend URL is not defined", {
-        expose: false,
-        code: "FRONTEND_URL_NOT_DEFINED",
-        operation: "sendEmail",
-        context: { type: "verification-notification" },
-      });
+      throw createError(500, "Frontend URL is not defined");
     }
 
     const sentEmail = await sendEmail("verification-notification", {
@@ -62,12 +42,7 @@ export const emailServices = {
     });
 
     if (!sentEmail) {
-      throw createError(500, "Failed to send the verification email.", {
-        expose: false,
-        code: "EMAIL_SEND_FAILED",
-        operation: "sendEmail",
-        context: { type: "verification-notification" },
-      });
+      throw createError(500, "Failed to send the verification email.");
     }
 
     return sentEmail;
@@ -79,13 +54,7 @@ export const emailServices = {
     const user = await read.userByEmail(email);
 
     if (!user) {
-      throw createError(404, "User not found", {
-        expose: true,
-        code: "USER_NOT_FOUND",
-        field: "email",
-        operation: "send_verification_email",
-        context: { email },
-      });
+      throw createError(404, "User not found");
     }
 
     const verificationToken = jwtUtils.generate(
@@ -95,13 +64,7 @@ export const emailServices = {
 
     if (!verificationToken) {
       await remove.userById(user._id.toString());
-      throw createError(500, "An error occurred while generating the token.", {
-        expose: false,
-        code: "TOKEN_GENERATION_FAILED",
-        operation: "jwtUtils.generate",
-        userId: user._id,
-        context: { purpose: "email_verification", resend: true },
-      });
+      throw createError(500, "An error occurred while generating the token.");
     }
 
     const sentEmail = await sendEmail("verification-email", {
@@ -112,17 +75,7 @@ export const emailServices = {
 
     if (!sentEmail) {
       await remove.userById(user._id.toString());
-      throw createError(500, "Failed to send the welcome email.", {
-        expose: false,
-        code: "EMAIL_SEND_FAILED",
-        operation: "sendEmail",
-        userId: user._id,
-        context: {
-          emailType: "verification",
-          recipient: email,
-          resend: true,
-        },
-      });
+      throw createError(500, "Failed to send the welcome email.");
     }
 
     return {

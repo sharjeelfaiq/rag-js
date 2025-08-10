@@ -2,11 +2,11 @@ import createError from "http-errors";
 
 import { globalUtils, jwtUtils } from "#utils/index.js";
 
-const { wrapExpressAsync } = globalUtils;
+const { routesAsyncHandler } = globalUtils;
 
 export const validate = {
   dto: (schema) =>
-    wrapExpressAsync(async (request, _, next) => {
+    routesAsyncHandler(async (request, _response, next) => {
       const { value, error } = schema.validate(request.body, {
         abortEarly: false,
       });
@@ -23,7 +23,7 @@ export const validate = {
       next();
     }),
 
-  accessToken: wrapExpressAsync(async (request, _, next) => {
+  accessToken: routesAsyncHandler(async (request, _response, next) => {
     const authHeader = request.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -39,7 +39,7 @@ export const validate = {
   }),
 
   authRole: (authorizedRole) =>
-    wrapExpressAsync(async (request, _, next) => {
+    routesAsyncHandler(async (request, _response, next) => {
       if (!request.user) {
         throw createError(401, "Authentication required.");
       }
