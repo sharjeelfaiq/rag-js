@@ -6,6 +6,7 @@ A complete, production-ready Express.js backend template with JWT authentication
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![Node](https://img.shields.io/badge/Node.js-16%2B-green?style=flat-square)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4.4%2B-green?style=flat-square)
+[![sharjeelfaiq/mern-backend-starter-javascript context](https://badge.forgithub.com/sharjeelfaiq/mern-backend-starter-javascript)](https://uithub.com/sharjeelfaiq/mern-backend-starter-javascript)
 
 ## 🎯 Project Overview
 
