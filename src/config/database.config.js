@@ -2,11 +2,9 @@ import createError from "http-errors";
 import mongoose from "mongoose";
 
 import { logger } from "./logger.config.js";
-import { env } from "./env.config.js";
+import { MONGODB_CONNECTION_STRING } from "#constants/index.js";
 
 let isConnected = false;
-
-const { DATABASE_URI } = env;
 
 export const connectDatabase = async () => {
   if (isConnected) {
@@ -15,16 +13,16 @@ export const connectDatabase = async () => {
   }
 
   try {
-    if (!DATABASE_URI) {
+    if (!MONGODB_CONNECTION_STRING) {
       throw createError(500, "Database URI is not defined.");
     }
 
-    const connection = await mongoose.connect(DATABASE_URI, {
+    const connection = await mongoose.connect(MONGODB_CONNECTION_STRING, {
       serverSelectionTimeoutMS: 5000,
     });
 
     isConnected = !!connection.connections[0].readyState;
-    logger.info(`connected: Database (url: ${DATABASE_URI})`.database);
+    logger.info(`connected: Database (url: ${MONGODB_CONNECTION_STRING})`.database);
 
     const db = mongoose.connection;
 
