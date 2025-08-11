@@ -5,12 +5,15 @@ const { routesAsyncHandler } = globalUtils;
 
 export const emailControllers = {
   checkVerificationToken: routesAsyncHandler(async (request, response) => {
-    const responseBody = await emailServices.checkVerificationToken(request);
+    const requestQuery = request.query;
+    const responseBody =
+      await emailServices.checkVerificationToken(requestQuery);
     response.status(200).send(responseBody);
   }),
 
   sendVerificationToken: routesAsyncHandler(async (request, response) => {
-    const responseBody = await emailServices.sendVerificationToken(request);
+    const requestBody = request.body;
+    const responseBody = await emailServices.sendVerificationToken(requestBody);
     response.status(200).json(responseBody);
   }),
 };

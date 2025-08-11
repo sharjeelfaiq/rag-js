@@ -7,8 +7,8 @@ import { frontendUrl } from "#constants/index.js";
 const { read, update, remove } = dataAccess;
 
 export const emailServices = {
-  checkVerificationToken: async (request) => {
-    const { verificationToken } = request.query;
+  checkVerificationToken: async (requestQuery) => {
+    const { verificationToken } = requestQuery;
 
     if (!verificationToken || typeof verificationToken !== "string") {
       throw createError(
@@ -48,8 +48,8 @@ export const emailServices = {
     return sentEmail;
   },
 
-  sendVerificationToken: async (request) => {
-    const { email } = request.body;
+  sendVerificationToken: async (requestBody) => {
+    const { email } = requestBody;
 
     const user = await read.userByEmail(email);
 

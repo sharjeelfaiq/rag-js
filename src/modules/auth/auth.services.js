@@ -7,8 +7,8 @@ import { backendUrl } from "#constants/index.js";
 const { write, read, update, remove } = dataAccess;
 
 export const authServices = {
-  signUp: async (request) => {
-    const { email, password, role } = request.body;
+  signUp: async (requestBody) => {
+    const { email, password, role } = requestBody;
 
     const existingEmail = await read.userByEmail(email);
 
@@ -62,8 +62,8 @@ export const authServices = {
     };
   },
 
-  signIn: async (request) => {
-    const { email, password } = request.body;
+  signIn: async (requestBody) => {
+    const { email, password } = requestBody;
 
     const user = await read.userByEmail(email);
 
@@ -130,8 +130,8 @@ export const authServices = {
     };
   },
 
-  signOut: async (request) => {
-    const { authorization } = request.headers;
+  signOut: async (requestHeaders) => {
+    const { authorization } = requestHeaders;
 
     const accessToken = authorization
       ? authorization.replace("Bearer ", "")
@@ -169,8 +169,8 @@ export const authServices = {
     };
   },
 
-  requestPasswordReset: async (request) => {
-    const { email } = request.body;
+  requestPasswordReset: async (requestBody) => {
+    const { email } = requestBody;
 
     const existingUser = await read.userByEmail(email);
 
@@ -203,8 +203,8 @@ export const authServices = {
     };
   },
 
-  updatePassword: async (request) => {
-    const { password, resetToken } = request.body;
+  updatePassword: async (requestBody) => {
+    const { password, resetToken } = requestBody;
 
     const decodedToken = jwtUtils.verify(resetToken);
 

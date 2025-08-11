@@ -15,8 +15,8 @@ export const userServices = {
     };
   },
 
-  getById: async (request) => {
-    const { id } = request.params;
+  getById: async (requestParams) => {
+    const { id } = requestParams;
 
     const user = await read.userById(id);
 
@@ -31,9 +31,9 @@ export const userServices = {
     };
   },
 
-  updateById: async (request) => {
-    const { id } = request.params;
-    const data = { ...request.body, ...request.files };
+  updateById: async (requestParams, requestFiles, requestBody) => {
+    const { id } = requestParams;
+    const data = { ...requestBody, ...requestFiles };
 
     const existingUser = await read.userById(id);
 
@@ -54,8 +54,8 @@ export const userServices = {
     };
   },
 
-  deleteById: async (request) => {
-    const { id } = request.params;
+  deleteById: async (requestParams) => {
+    const { id } = requestParams;
 
     const user = await remove.userById(id);
 

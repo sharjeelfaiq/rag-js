@@ -5,12 +5,14 @@ const { routesAsyncHandler } = globalUtils;
 
 export const otpControllers = {
   send: routesAsyncHandler(async (request, response) => {
-    const responseBody = await otpServices.send(request);
+    const requestBody = request.body;
+    const responseBody = await otpServices.send(requestBody);
     response.status(200).json(responseBody);
   }),
 
   verify: routesAsyncHandler(async (request, response) => {
-    const responseBody = await otpServices.verify(request);
+    const requestBody = request.body;
+    const responseBody = await otpServices.verify(requestBody);
     response.status(200).json(responseBody);
   }),
 };

@@ -7,8 +7,8 @@ import { dataAccess } from "#data-access/index.js";
 const { write, read } = dataAccess;
 
 export const otpServices = {
-  send: async (request) => {
-    const { email } = request.body;
+  send: async (requestBody) => {
+    const { email } = requestBody;
 
     const existingUser = await read.userByEmail(email);
     if (!existingUser) {
@@ -47,8 +47,8 @@ export const otpServices = {
     };
   },
 
-  verify: async (request) => {
-    const { email, otp } = request.body;
+  verify: async (requestBody) => {
+    const { email, otp } = requestBody;
 
     const existingUser = await read.userByEmail(email);
     if (!existingUser) {

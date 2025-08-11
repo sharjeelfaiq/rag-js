@@ -4,8 +4,8 @@ import createError from "http-errors";
 const { read, update } = dataAccess;
 
 export const notificationServices = {
-  read: async (request) => {
-    const { userId } = request.params;
+  read: async (requestParams) => {
+    const { userId } = requestParams;
 
     const data = await read.notificationByUserId(userId);
 
@@ -20,8 +20,8 @@ export const notificationServices = {
     };
   },
 
-  updateById: async (request) => {
-    const { notiId } = request.params;
+  updateById: async (requestParams) => {
+    const { notiId } = requestParams;
 
     const data = await update.notificationById(notiId);
 

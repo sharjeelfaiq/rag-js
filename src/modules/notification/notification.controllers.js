@@ -5,12 +5,14 @@ const { routesAsyncHandler } = globalUtils;
 
 export const notificationControllers = {
   read: routesAsyncHandler(async (request, response) => {
-    const responseBody = await notificationServices.read(request);
+    const requestParams = request.params;
+    const responseBody = await notificationServices.read(requestParams);
     response.status(200).json(responseBody);
   }),
 
   updateById: routesAsyncHandler(async (request, response) => {
-    const responseBody = await notificationServices.updateById(request);
+    const requestParams = request.params;
+    const responseBody = await notificationServices.updateById(requestParams);
     response.status(200).json(responseBody);
   }),
 };

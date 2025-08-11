@@ -40,7 +40,7 @@ const apiRateLimiter = rateLimit({
 });
 
 export const applyGlobalMiddleware = (app, appRouter) => {
-  app.use(morgan("dev")); // Logs incoming HTTP requests (method, URL, status) for debugging
+  app.use(morgan("combined")); // Logs incoming HTTP requests (method, URL, status) for debugging
 
   app.use(helmet()); // Sets secure HTTP headers to protect against common web vulnerabilities
 
