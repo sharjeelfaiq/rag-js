@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-import { jwtUtils, sendEmail } from "#utils/index.js";
+import { tokenUtils, sendEmail } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
 import { frontendUrl } from "#constants/index.js";
 
@@ -17,7 +17,7 @@ export const emailServices = {
       );
     }
 
-    const decodedToken = jwtUtils.verify(verificationToken);
+    const decodedToken = tokenUtils.verify(verificationToken);
 
     const { id } = decodedToken;
 
@@ -57,7 +57,7 @@ export const emailServices = {
       throw createError(404, "User not found");
     }
 
-    const verificationToken = jwtUtils.generate(
+    const verificationToken = tokenUtils.generate(
       { id: user._id },
       "verificationToken"
     );

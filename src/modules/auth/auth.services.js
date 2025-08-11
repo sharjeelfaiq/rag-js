@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-import { jwtUtils, sendEmail, bcryptUtils } from "#utils/index.js";
+import { tokenUtils, sendEmail, passwordUtils } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
 import { backendUrl } from "#constants/index.js";
 
@@ -16,7 +16,7 @@ export const authServices = {
       throw createError(400, "A user with this email already exists.");
     }
 
-    const hashedPassword = await bcryptUtils.hash(password, { rounds: 12 });
+    const hashedPassword = await passwordUtils.hash(password, { rounds: 12 });
 
     const registrationData = {
       email,
@@ -32,7 +32,7 @@ export const authServices = {
       throw createError(500, "Failed to create a new user.");
     }
 
-    const verificationToken = jwtUtils.generate(
+    const verificationToken = tokenUtils.generate(
       { id: newUser._id },
       "verificationToken"
     );
@@ -75,7 +75,7 @@ export const authServices = {
 
     if (!user.isEmailVerified) {
       // Generate new verification token
-      const verificationToken = jwtUtils.generate(
+      const verificationToken = tokenUtils.generate(
         { id: userId },
         "verificationToken"
       );
@@ -102,13 +102,13 @@ export const authServices = {
       );
     }
 
-    const isPasswordValid = await bcryptUtils.compare(password, user.password);
+    const isPasswordValid = await passwordUtils.compare(password, user.password);
 
     if (!isPasswordValid) {
       throw createError(401, "Invalid credentials.");
     }
 
-    const accessToken = jwtUtils.generate(
+    const accessToken = tokenUtils.generate(
       { id: userId, role: user.role },
       "accessToken"
     );
@@ -143,7 +143,7 @@ export const authServices = {
       throw createError(400, "Token is already blacklisted.");
     }
 
-    const decodedToken = jwtUtils.verify(accessToken);
+    const decodedToken = tokenUtils.verify(accessToken);
     const { id } = decodedToken;
 
     const expiresAt = new Date(Date.now() + 60 * 60 * 1000).getTime(); // 1-hour expiration
@@ -178,7 +178,7 @@ export const authServices = {
       throw createError(404, "User not found");
     }
 
-    const resetToken = jwtUtils.generate(
+    const resetToken = tokenUtils.generate(
       { id: existingUser._id },
       "passwordResetToken"
     );
@@ -206,7 +206,7 @@ export const authServices = {
   updatePassword: async (requestBody) => {
     const { password, resetToken } = requestBody;
 
-    const decodedToken = jwtUtils.verify(resetToken);
+    const decodedToken = tokenUtils.verify(resetToken);
 
     const { id } = decodedToken;
 
@@ -216,7 +216,7 @@ export const authServices = {
       throw createError(404, "User not found");
     }
 
-    const hashedPassword = await bcryptUtils.hash(password, { rounds: 12 });
+    const hashedPassword = await passwordUtils.hash(password, { rounds: 12 });
 
     const isPasswordUpdated = await update.userById(id, {
       password: hashedPassword,

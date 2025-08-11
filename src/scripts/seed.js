@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import { logger, env } from "#config/index.js"; // optional logging
-import { bcryptUtils } from "#utils/index.js";
+import { passwordUtils } from "#utils/index.js";
 import { UserModel } from "#models/index.js";
 
 const { DATABASE_URI } = env;
@@ -30,7 +30,7 @@ const seedUsers = async () => {
       continue;
     }
 
-    const hashedPassword = await bcryptUtils.hash(user.password, { rounds: 12 });
+    const hashedPassword = await passwordUtils.hash(user.password, { rounds: 12 });
 
     await UserModel.create({
       email: user.email,

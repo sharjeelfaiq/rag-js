@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-import { globalUtils, jwtUtils } from "#utils/index.js";
+import { globalUtils, tokenUtils } from "#utils/index.js";
 
 const { routesAsyncHandler } = globalUtils;
 
@@ -32,7 +32,7 @@ export const validate = {
 
     const accessToken = authHeader.split(" ")[1]; // Get token after 'Bearer '
 
-    const decodedToken = jwtUtils.verify(accessToken);
+    const decodedToken = tokenUtils.verify(accessToken);
 
     request.user = decodedToken;
     next();

@@ -469,7 +469,7 @@ The project uses ES6 modules with custom import paths for cleaner code:
 
 // Use clean imports:
 import userModel from '#models/user.model.js';
-import { jwtUtils } from '#utils/index.js';
+import { tokenUtils } from '#utils/index.js';
 import { dbConfig } from '#config/index.js';
 ```
 
