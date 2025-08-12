@@ -1,6 +1,6 @@
 import express from "express";
 
-import { authDto } from "#dtos/index.js";
+import { authDto } from "./auth.dto.js";
 import { validate } from "#middleware/index.js";
 import { authControllers } from "./auth.controllers.js";
 

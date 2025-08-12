@@ -3,3 +3,9 @@ node_modules
 dist
 
 .env
+
+.vscode
+
+generate-tree.ps1
+
+directory_tree.md

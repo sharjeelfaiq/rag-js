@@ -1,10 +1,11 @@
 import Joi from "joi";
+
 import {
   emailValidation,
   passwordValidation,
   roleValidation,
   tokenValidation,
-} from "./validations.js";
+} from "#validations/index.js";
 
 export const authDto = {
   signUpDto: Joi.object({

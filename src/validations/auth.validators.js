@@ -9,7 +9,7 @@ const emailValidation = Joi.string().email().trim().lowercase().messages({
 
 const passwordValidation = Joi.string()
   .pattern(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
   )
   .messages({
     "string.pattern.base":
@@ -24,10 +24,4 @@ const roleValidation = Joi.string().valid("admin", "user").messages({
   "any.required": "Role is required.",
 });
 
-const tokenValidation = Joi.string().required().messages({
-  "string.base": "Verification token should be a type of text.",
-  "string.empty": "Verification token should not be empty.",
-  "any.required": "Verification token is required.",
-});
-
-export { emailValidation, passwordValidation, roleValidation, tokenValidation };
+export { emailValidation, passwordValidation, roleValidation };
