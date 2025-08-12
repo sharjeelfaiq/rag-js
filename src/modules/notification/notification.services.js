@@ -4,35 +4,35 @@ import createError from "http-errors";
 const { read, update } = dataAccess;
 
 export const notificationServices = {
-  read: async (requestParams) => {
+  getNotificationsByUserId: async (requestParams) => {
     const { userId } = requestParams;
 
-    const data = await read.notificationByUserId(userId);
+    const userNotifications = await read.notificationByUserId(userId);
 
-    if (!data) {
+    if (!userNotifications) {
       throw createError(500, "Notification retrieval failed");
     }
 
     return {
       success: true,
       message: "Notifications retrieved successfully",
-      data,
+      data: userNotifications,
     };
   },
 
-  updateById: async (requestParams) => {
+  updateNotificationById: async (requestParams) => {
     const { notiId } = requestParams;
 
-    const data = await update.notificationById(notiId);
+    const updatedNotification = await update.notificationById(notiId);
 
-    if (!data) {
+    if (!updatedNotification) {
       throw createError(500, "Notification update failed");
     }
 
     return {
       success: true,
       message: "Notification updated successfully",
-      data,
+      data: updatedNotification,
     };
   },
 };

@@ -4,15 +4,15 @@ import { notificationServices } from "./notification.services.js";
 const { routesAsyncHandler } = globalUtils;
 
 export const notificationControllers = {
-  read: routesAsyncHandler(async (request, response) => {
+  getNotificationsByUserId: routesAsyncHandler(async (request, response) => {
     const requestParams = request.params;
-    const responseBody = await notificationServices.read(requestParams);
+    const responseBody = await notificationServices.getNotificationsByUserId(requestParams);
     response.status(200).json(responseBody);
   }),
 
-  updateById: routesAsyncHandler(async (request, response) => {
+  updateNotificationById: routesAsyncHandler(async (request, response) => {
     const requestParams = request.params;
-    const responseBody = await notificationServices.updateById(requestParams);
+    const responseBody = await notificationServices.updateNotificationById(requestParams);
     response.status(200).json(responseBody);
   }),
 };
