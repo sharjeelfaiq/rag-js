@@ -47,13 +47,11 @@
     "#config/*": "./src/config/*",
     "#constants/*": "./src/constants/*",
     "#data-access/*": "./src/data-access/*",
-    "#dtos/*": "./src/dtos/*",
     "#middleware/*": "./src/middleware/*",
     "#models/*": "./src/models/*",
     "#modules/*": "./src/modules/*",
     "#routes/*": "./src/routes/*",
     "#server/*": "./src/server/*",
-    "#utils/*": "./src/utils/*",
-    "#validations/*": "./src/validations/*"
+    "#utils/*": "./src/utils/*"
   }
 }

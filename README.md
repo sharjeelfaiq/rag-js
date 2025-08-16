@@ -351,7 +351,8 @@ npm run seed
 │   │   │   ├── 📄 auth.controllers.js
 │   │   │   ├── 📄 auth.dto.js
 │   │   │   ├── 📄 auth.routes.js
-│   │   │   └── 📄 auth.services.js
+│   │   │   ├── 📄 auth.services.js
+│   │   │   └── 📄 auth.validations.js
 │   │   ├── 🗂️ email
 │   │   │   ├── 📄 email.controllers.js
 │   │   │   ├── 📄 email.routes.js
@@ -387,8 +388,6 @@ npm run seed
 │   │   ├── 📄 password.utils.js
 │   │   ├── 📄 token.utils.js
 │   │   └── 📄 username.utils.js
-│   ├── 🗂️ validations
-│   │   └── 📄 index.js
 │   ├── 🗂️ views
 │   │   ├── 🗂️ otp-email
 │   │   │   └── 📄 index.html
@@ -399,7 +398,6 @@ npm run seed
 │   │   └── 🗂️ verification-notification
 │   │       └── 📄 index.html
 │   └── 📄 index.js
-├── 📄 documentation.md
 ├── 📄 eslint.config.js
 ├── 📄 generate-tree.ps1
 ├── 📄 LICENSE
