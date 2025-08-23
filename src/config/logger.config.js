@@ -1,6 +1,6 @@
 import winston from "winston";
 
-import { isProdEnv } from "#constants/index.js";
+import { IS_PROD_ENV } from "#constants/index.js";
 
 const createLogger = () => {
   const levels = { error: 0, warn: 1, info: 2, debug: 3 };
@@ -20,7 +20,7 @@ const createLogger = () => {
               `[${timestamp}] [${level}]: ${message}`
           )
         ),
-        level: isProdEnv ? "warn" : "debug",
+        level: IS_PROD_ENV ? "warn" : "debug",
         handleExceptions: true,
       }),
     ],

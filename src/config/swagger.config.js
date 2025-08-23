@@ -2,10 +2,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-import { isProdEnv } from "#constants/index.js";
-import { env } from "#config/index.js";
-
-const { BACKEND_BASE_URL_DEV, BACKEND_BASE_URL_PROD } = env;
+import { BACKEND_URL } from "#constants/index.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -19,7 +16,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: isProdEnv ? BACKEND_BASE_URL_PROD : BACKEND_BASE_URL_DEV,
+        url: BACKEND_URL,
         description: "RESTful API",
       },
     ],

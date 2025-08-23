@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import { env, logger } from "#config/index.js";
-import { isProdEnv } from "#constants/index.js";
+import { IS_PROD_ENV, BACKEND_URL, FRONTEND_URL } from "#constants/index.js";
 
 const {
   PORT,
@@ -12,10 +12,6 @@ const {
   CLOUDINARY_API_SECRET,
   USER_EMAIL,
   USER_PASSWORD,
-  BACKEND_BASE_URL_PROD,
-  BACKEND_BASE_URL_DEV,
-  FRONTEND_BASE_URL_PROD,
-  FRONTEND_BASE_URL_DEV,
 } = env;
 
 export const healthServices = {
@@ -83,7 +79,7 @@ export const healthServices = {
       timestamp: new Date().toISOString(),
       uptime: `${Math.floor(process.uptime())}s`,
       responseTime: `${Date.now() - startTime}ms`,
-      environment: isProdEnv ? "Production" : "Development",
+      environment: IS_PROD_ENV ? "Production" : "Development",
       memory: {
         usage: `${memoryMB}MB`,
         status: memoryStatus,
@@ -93,8 +89,8 @@ export const healthServices = {
         responseTime: dbResponseTime ? `${dbResponseTime}ms` : null,
       },
       urls: {
-        backend: isProdEnv ? BACKEND_BASE_URL_PROD : BACKEND_BASE_URL_DEV,
-        frontend: isProdEnv ? FRONTEND_BASE_URL_PROD : FRONTEND_BASE_URL_DEV,
+        backend: BACKEND_URL,
+        frontend: FRONTEND_URL,
       },
       configured: {
         database: !!DATABASE_URI,

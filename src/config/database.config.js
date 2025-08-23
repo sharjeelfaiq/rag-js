@@ -22,7 +22,9 @@ export const connectDatabase = async () => {
     });
 
     isConnected = !!connection.connections[0].readyState;
-    logger.info(`connected: Database (url: ${MONGODB_CONNECTION_STRING})`.database);
+    logger.info(
+      `Connected: Database (url: ${MONGODB_CONNECTION_STRING})`.database
+    );
 
     const db = mongoose.connection;
 

@@ -2,7 +2,7 @@ import createError from "http-errors";
 
 import { tokenUtils, sendEmail, passwordUtils } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
-import { backendUrl } from "#constants/index.js";
+import { BACKEND_URL } from "#constants/index.js";
 
 const { write, read, update, remove } = dataAccess;
 
@@ -41,14 +41,14 @@ export const authServices = {
       throw createError(500, "An error occurred while generating the token.");
     }
 
-    if (!backendUrl) {
+    if (!BACKEND_URL) {
       throw createError(500, "Backend URL is not defined.");
     }
 
     const sentEmail = await sendEmail("verification-email", {
       email,
       subject: "Welcome - Verify your email",
-      backendUrl,
+      BACKEND_URL,
       verificationToken,
     });
 
@@ -102,7 +102,10 @@ export const authServices = {
       );
     }
 
-    const isPasswordValid = await passwordUtils.compare(password, user.password);
+    const isPasswordValid = await passwordUtils.compare(
+      password,
+      user.password
+    );
 
     if (!isPasswordValid) {
       throw createError(401, "Invalid credentials.");

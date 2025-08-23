@@ -23,7 +23,7 @@ cloudinary.api.ping((error) => {
   } else {
     logger.info(
       // @ts-ignore
-      `connected: Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service
+      `Connected: Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service
     );
   }
 });

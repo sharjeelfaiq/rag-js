@@ -2,7 +2,7 @@ import createError from "http-errors";
 
 import { tokenUtils, sendEmail } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
-import { frontendUrl } from "#constants/index.js";
+import { FRONTEND_URL } from "#constants/index.js";
 
 const { read, update, remove } = dataAccess;
 
@@ -33,12 +33,12 @@ export const emailServices = {
       throw createError(500, "An error occurred while verifying the email");
     }
 
-    if (!frontendUrl) {
+    if (!FRONTEND_URL) {
       throw createError(500, "Frontend URL is not defined");
     }
 
     const sentEmail = await sendEmail("verification-notification", {
-      frontendUrl,
+      FRONTEND_URL,
     });
 
     if (!sentEmail) {

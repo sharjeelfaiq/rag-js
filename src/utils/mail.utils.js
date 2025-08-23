@@ -3,7 +3,7 @@ import createError from "http-errors";
 import { join } from "path";
 
 import { env, transporter } from "#config/index.js";
-import { viewsDirectory } from "#constants/index.js";
+import { VIEWS_DIRECTORY } from "#constants/index.js";
 
 const { USER_EMAIL } = env;
 
@@ -18,7 +18,7 @@ const getEmailTemplate = async (folder, filename) => {
   }
 
   try {
-    const filePath = join(viewsDirectory, folder, filename);
+    const filePath = join(VIEWS_DIRECTORY, folder, filename);
     const template = await readFile(filePath, "utf-8");
 
     // Cache template for future use
@@ -52,8 +52,8 @@ const sendMail = async (mailOptions) => {
 // - email
 // - resetToken
 // - verificationToken
-// - frontendUrl
-// - backendUrl
+// - FRONTEND_URL
+// - BACKEND_URL
 // - subject
 // - rawOTP
 
