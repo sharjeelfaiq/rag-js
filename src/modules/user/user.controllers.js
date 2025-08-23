@@ -4,8 +4,8 @@ import { userServices } from "./user.services.js";
 const { routesAsyncHandler } = globalUtils;
 
 export const userControllers = {
-  getAll: routesAsyncHandler(async (_request, response) => {
-    const responseBody = await userServices.getAll();
+  getUsers: routesAsyncHandler(async (_request, response) => {
+    const responseBody = await userServices.getUsers();
     response.status(200).json(responseBody);
   }),
 

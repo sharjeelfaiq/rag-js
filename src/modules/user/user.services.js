@@ -5,7 +5,7 @@ import { dataAccess } from "#data-access/index.js";
 const { read, update, remove } = dataAccess;
 
 export const userServices = {
-  getAll: async () => {
+  getUsers: async () => {
     const users = await read.users();
 
     return {
