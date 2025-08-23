@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
-import { env } from "#config/env.config.js";
-import { logger } from "#config/logger.config.js";
+import { env } from "./env.config.js";
+import { logger } from "./logger.config.js";
 
 const { EMAIL_HOST, EMAIL_PORT, USER_EMAIL, USER_PASSWORD } = env;
 
