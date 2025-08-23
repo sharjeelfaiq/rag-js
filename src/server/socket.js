@@ -18,8 +18,6 @@ export const createSocketServer = (server, corsOrigin) => {
     socket.on("disconnect", (reason) => {
       logger.info(`Disconnected: Socket ${socket.id}, reason: ${reason}`);
     });
-
-    // You can add custom events here or in separate modules
   });
 
   return io;
