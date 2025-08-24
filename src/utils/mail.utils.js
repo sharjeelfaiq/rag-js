@@ -33,7 +33,7 @@ const processTemplate = (template, variables) => {
   return Object.entries(variables).reduce(
     (processed, [key, value]) =>
       processed.replace(new RegExp(`\\$\\{${key}\\}`, "g"), value),
-    template
+    template,
   );
 };
 

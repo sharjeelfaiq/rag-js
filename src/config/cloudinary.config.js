@@ -17,15 +17,15 @@ cloudinary.config({
 cloudinary.api.ping((error) => {
   if (error) {
     logger.error(
-      // @ts-ignore
-      `Connection Failed: Cloudinary\nerror: ${error.message}`.error
+      `[connection_failed] Cloudinary (error: ${error.message})`.error
     );
-  } else {
-    logger.info(
-      // @ts-ignore
-      `Connected: Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service
-    );
+
+    return;
   }
+
+  logger.info(
+    `[connected] Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service
+  );
 });
 
 export const storage = new CloudinaryStorage({

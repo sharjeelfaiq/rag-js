@@ -8,7 +8,7 @@ const { EMAIL_HOST, EMAIL_PORT, USER_EMAIL, USER_PASSWORD } = env;
 const createTransporter = () => {
   const transporter = nodemailer.createTransport({
     host: EMAIL_HOST,
-    port: Number(EMAIL_PORT),
+    port: EMAIL_PORT,
     secure: false, // Set true for SSL (465), false for TLS (587)
     auth: { user: USER_EMAIL, pass: USER_PASSWORD },
     connectionTimeout: 60000,
@@ -18,11 +18,11 @@ const createTransporter = () => {
 
   transporter.verify((error) => {
     if (error) {
-      logger.error(
-        `Connection Failed: Nodemailer\nerror: ${error.message}`.error
-      );
+      logger.error(`[connection_failed] Mail (error: ${error.message})`.error);
     } else {
-      logger.info(`Connected: Email Service (email: ${USER_EMAIL})`.service);
+      logger.info(
+        `[connected] Mail (host: ${EMAIL_HOST}, port: ${EMAIL_PORT})`.service
+      );
     }
   });
 

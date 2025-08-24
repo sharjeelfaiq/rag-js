@@ -27,7 +27,7 @@ export const notificationDataAccess = {
       return NotificationModel.findByIdAndUpdate(
         notiId,
         { $set: { read: readStatus } },
-        { new: true } // returns the updated document
+        { new: true }, // returns the updated document
       ).exec();
     },
   },

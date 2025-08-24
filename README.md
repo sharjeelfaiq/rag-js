@@ -815,7 +815,7 @@ const newSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 export default mongoose.model("NewModel", newSchema);

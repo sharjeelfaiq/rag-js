@@ -30,7 +30,9 @@ const seedUsers = async () => {
       continue;
     }
 
-    const hashedPassword = await passwordUtils.hash(user.password, { rounds: 12 });
+    const hashedPassword = await passwordUtils.hash(user.password, {
+      rounds: 12,
+    });
 
     await UserModel.create({
       email: user.email,

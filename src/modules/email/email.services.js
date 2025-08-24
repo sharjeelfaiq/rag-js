@@ -13,7 +13,7 @@ export const emailServices = {
     if (!verificationToken || typeof verificationToken !== "string") {
       throw createError(
         400,
-        "Verification token is required and must be a string"
+        "Verification token is required and must be a string",
       );
     }
 
@@ -59,7 +59,7 @@ export const emailServices = {
 
     const verificationToken = tokenUtils.generate(
       { id: user._id },
-      "verificationToken"
+      "verificationToken",
     );
 
     if (!verificationToken) {

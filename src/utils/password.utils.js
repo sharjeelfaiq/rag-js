@@ -12,7 +12,7 @@ export const passwordUtils = {
     if (Buffer.byteLength(password, "utf8") > 72) {
       throw createError(
         400,
-        "Password exceeds maximum length of 72 UTF-8 bytes"
+        "Password exceeds maximum length of 72 UTF-8 bytes",
       );
     }
 
@@ -33,7 +33,7 @@ export const passwordUtils = {
     if (Buffer.byteLength(password, "utf8") > 72) {
       throw createError(
         400,
-        "Password exceeds maximum length of 72 UTF-8 bytes"
+        "Password exceeds maximum length of 72 UTF-8 bytes",
       );
     }
 

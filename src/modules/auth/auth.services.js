@@ -34,7 +34,7 @@ export const authServices = {
 
     const verificationToken = tokenUtils.generate(
       { id: newUser._id },
-      "verificationToken"
+      "verificationToken",
     );
 
     if (!verificationToken) {
@@ -77,7 +77,7 @@ export const authServices = {
       // Generate new verification token
       const verificationToken = tokenUtils.generate(
         { id: userId },
-        "verificationToken"
+        "verificationToken",
       );
 
       if (!verificationToken) {
@@ -98,13 +98,13 @@ export const authServices = {
       // Then throw error informing the user
       throw createError(
         403,
-        "Email not verified. A new verification link has been sent to your inbox."
+        "Email not verified. A new verification link has been sent to your inbox.",
       );
     }
 
     const isPasswordValid = await passwordUtils.compare(
       password,
-      user.password
+      user.password,
     );
 
     if (!isPasswordValid) {
@@ -113,7 +113,7 @@ export const authServices = {
 
     const accessToken = tokenUtils.generate(
       { id: userId, role: user.role },
-      "accessToken"
+      "accessToken",
     );
 
     if (!accessToken) {
@@ -162,7 +162,7 @@ export const authServices = {
     if (!blacklistedToken) {
       throw createError(
         500,
-        "An error occurred while blacklisting the accessToken."
+        "An error occurred while blacklisting the accessToken.",
       );
     }
 
@@ -183,7 +183,7 @@ export const authServices = {
 
     const resetToken = tokenUtils.generate(
       { id: existingUser._id },
-      "passwordResetToken"
+      "passwordResetToken",
     );
 
     if (!resetToken) {
