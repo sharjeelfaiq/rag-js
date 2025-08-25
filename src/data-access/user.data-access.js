@@ -42,7 +42,7 @@ export const userDataAccess = {
 
       return UserModel.findByIdAndUpdate(id, userData, {
         new: true,
-        upsert: true,
+        runValidators: true,
       });
     },
   },
