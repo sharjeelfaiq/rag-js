@@ -39,31 +39,41 @@ const apiRateLimiter = rateLimit({
     message: "Too many requests. Please try again later.",
   },
 });
-
 export const applyGlobalMiddleware = (app, appRouter) => {
-  app.use(morgan("common.")); // Logs incoming HTTP requests (method, URL, status) for debugging
+  // 1. Logging should always come first so every request is recorded
+  app.use(morgan("common."));
 
-  app.use(helmet()); // Sets secure HTTP headers to protect against common web vulnerabilities
+  app.disable("x-powered-by");
 
-  app.use(xss()); // Sanitizes user input to prevent XSS (Cross-site scripting) attacks
+  // 2. Security headers early for protection before other middlewares
+  app.use(helmet());
 
-  app.use(mongoSanitize()); // Prevents NoSQL injection by removing MongoDB operator characters
+  // 3. Apply rate limiting before body parsing to block abusive requests early
+  app.use(apiRateLimiter);
 
-  app.use(compression()); // Compresses responseBody bodies to improve performance
+  // 4. Sanitize input before it hits your routes
+  app.use(xss()); // Prevent XSS (Cross-site scripting) attacks
+  app.use(mongoSanitize()); // Prevent NoSQL injection by removing MongoDB operator characters
 
-  app.use(apiRateLimiter); // Limits repeated requests from the same IP to prevent abuse (rate limiting)
+  // 5. CORS should be enabled before routes so cross-origin requests are properly handled
+  app.use(cors(corsOptions));
 
-  app.use(cors(corsOptions)); // Enables CORS with the specified options (cross-origin requests support)
-
+  // 6. Parse request bodies before hitting your routes
   app.use(express.json({ limit: "10mb" })); // Parses incoming JSON payloads (with a size limit)
-
   app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parses URL-encoded payloads (form data)
 
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec)); // Serves Swagger UI for API documentation
+  // 7. Compression after parsing to optimize responses
+  app.use(compression());
 
-  app.use(appRouter); // Mounts the main application router (your routes go here)
+  // 8a. Mount developer tools (Swagger UI) before app routes
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  app.use(invalidRouteHandler); // Handles undefined routes (404 Not Found)
+  // 8b. Main application routes
+  app.use(appRouter);
 
-  app.use(errorHandler); // Global error handler to catch and format all errors
+  // 9. Handle undefined routes (404) after routes
+  app.use(invalidRouteHandler);
+
+  // 10. Global error handler should always be the last middleware
+  app.use(errorHandler);
 };
