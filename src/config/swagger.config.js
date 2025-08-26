@@ -2,7 +2,9 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-import { BACKEND_URL } from "#constants/index.js";
+import { env } from "#config/index.js";
+
+const { BACKEND_URL } = env;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

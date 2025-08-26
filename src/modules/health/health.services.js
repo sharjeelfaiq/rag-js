@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
 import { env, logger } from "#config/index.js";
-import { IS_PROD_ENV, BACKEND_URL, FRONTEND_URL } from "#constants/index.js";
+import { IS_PROD_ENV } from "#constants/index.js";
 
 const {
   PORT,
-  DATABASE_URI,
-  JWT_SECRET_KEY,
-  CLOUDINARY_CLOUD_NAME,
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
   USER_EMAIL,
+  BACKEND_URL,
+  FRONTEND_URL,
+  DATABASE_URI,
   USER_PASSWORD,
+  JWT_SECRET_KEY,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_SECRET,
 } = env;
 
 export const healthServices = {

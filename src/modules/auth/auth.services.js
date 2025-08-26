@@ -2,9 +2,10 @@ import createError from "http-errors";
 
 import { tokenUtils, sendEmail, passwordUtils } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
-import { BACKEND_URL } from "#constants/index.js";
+import { env } from "#config/index.js";
 
 const { write, read, update, remove } = dataAccess;
+const { BACKEND_URL } = env;
 
 export const authServices = {
   signUp: async (requestBody) => {
@@ -34,7 +35,7 @@ export const authServices = {
 
     const verificationToken = tokenUtils.generate(
       { id: newUser._id },
-      "verificationToken",
+      "verificationToken"
     );
 
     if (!verificationToken) {
@@ -77,7 +78,7 @@ export const authServices = {
       // Generate new verification token
       const verificationToken = tokenUtils.generate(
         { id: userId },
-        "verificationToken",
+        "verificationToken"
       );
 
       if (!verificationToken) {
@@ -98,13 +99,13 @@ export const authServices = {
       // Then throw error informing the user
       throw createError(
         403,
-        "Email not verified. A new verification link has been sent to your inbox.",
+        "Email not verified. A new verification link has been sent to your inbox."
       );
     }
 
     const isPasswordValid = await passwordUtils.compare(
       password,
-      user.password,
+      user.password
     );
 
     if (!isPasswordValid) {
@@ -113,7 +114,7 @@ export const authServices = {
 
     const accessToken = tokenUtils.generate(
       { id: userId, role: user.role },
-      "accessToken",
+      "accessToken"
     );
 
     if (!accessToken) {
@@ -162,7 +163,7 @@ export const authServices = {
     if (!blacklistedToken) {
       throw createError(
         500,
-        "An error occurred while blacklisting the accessToken.",
+        "An error occurred while blacklisting the accessToken."
       );
     }
 
@@ -183,7 +184,7 @@ export const authServices = {
 
     const resetToken = tokenUtils.generate(
       { id: existingUser._id },
-      "passwordResetToken",
+      "passwordResetToken"
     );
 
     if (!resetToken) {

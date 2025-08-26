@@ -2,9 +2,10 @@ import createError from "http-errors";
 
 import { tokenUtils, sendEmail } from "#utils/index.js";
 import { dataAccess } from "#data-access/index.js";
-import { FRONTEND_URL } from "#constants/index.js";
+import { env } from "#config/index.js";
 
 const { read, update, remove } = dataAccess;
+const { FRONTEND_URL } = env;
 
 export const emailServices = {
   checkVerificationToken: async (requestQuery) => {
@@ -13,7 +14,7 @@ export const emailServices = {
     if (!verificationToken || typeof verificationToken !== "string") {
       throw createError(
         400,
-        "Verification token is required and must be a string",
+        "Verification token is required and must be a string"
       );
     }
 
@@ -59,7 +60,7 @@ export const emailServices = {
 
     const verificationToken = tokenUtils.generate(
       { id: user._id },
-      "verificationToken",
+      "verificationToken"
     );
 
     if (!verificationToken) {
