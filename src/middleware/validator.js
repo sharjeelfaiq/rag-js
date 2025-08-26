@@ -1,12 +1,10 @@
 import createError from "http-errors";
 
-import { globalUtils, tokenUtils } from "#utils/index.js";
-
-const { routesAsyncHandler } = globalUtils;
+import { tokenUtils } from "#utils/index.js";
 
 export const validate = {
-  accessToken: routesAsyncHandler(async (request, _response, next) => {
-    const authHeader = request.headers.authorization;
+  accessToken: (req, _res, next) => {
+    const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       throw createError(401, "Authorization token missing or malformed.");
@@ -14,42 +12,35 @@ export const validate = {
 
     const accessToken = authHeader.split(" ")[1]; // Get token after 'Bearer '
 
-    const decodedToken = tokenUtils.verify(accessToken);
+    const decodedToken = tokenUtils.decode(accessToken);
 
-    request.user = decodedToken;
+    req.user = decodedToken;
+
     next();
-  }),
+  },
 
-  dto: (schema) =>
-    routesAsyncHandler(async (request, _response, next) => {
-      const { value, error } = schema.validate(request.body, {
-        abortEarly: false,
-      });
+  dto: (schema) => (req, _res, next) => {
+    const { value, error } = schema.validate(req.body, { abortEarly: false });
 
-      if (error) {
-        const errorMessages = error.details.map(({ message }) => message);
-        throw createError(
-          400,
-          `Validation failed: ${errorMessages.join(", ")}`
-        );
-      }
+    if (error) {
+      const errorMessages = error.details.map(({ message }) => message);
+      throw createError(400, `Validation failed: ${errorMessages.join(", ")}`);
+    }
 
-      request.body = value;
-      next();
-    }),
+    req.body = value;
 
-  authRole: (authorizedRole) =>
-    routesAsyncHandler(async (request, _response, next) => {
-      if (!request.user) {
-        throw createError(401, "Authentication required.");
-      }
+    next();
+  },
 
-      if (request.user.role !== authorizedRole) {
-        throw createError(
-          403,
-          `Access denied: ${authorizedRole} role required.`
-        );
-      }
-      next();
-    }),
+  authRole: (authorizedRole) => (req, _res, next) => {
+    if (!req.user) {
+      throw createError(401, "Authentication required.");
+    }
+
+    if (req.user.role !== authorizedRole) {
+      throw createError(403, `Access denied: ${authorizedRole} role required.`);
+    }
+
+    next();
+  },
 };
