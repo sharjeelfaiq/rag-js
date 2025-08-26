@@ -39,41 +39,50 @@ const apiRateLimiter = rateLimit({
     message: "Too many requests. Please try again later.",
   },
 });
-export const applyGlobalMiddleware = (app, appRouter) => {
-  // 1. Logging should always come first so every request is recorded
+
+export const applyMiddleware = (app, appRouter) => {
+  // 1. Request logging
   app.use(morgan("common."));
 
+  // Disable Express signature header
   app.disable("x-powered-by");
 
-  // 2. Security headers early for protection before other middlewares
+  // 2. Security headers (Helmet also disables X-Powered-By)
   app.use(helmet());
 
-  // 3. Apply rate limiting before body parsing to block abusive requests early
+  // Extra step: remove or override sensitive headers
+  app.use((req, res, next) => {
+    res.removeHeader("Server"); // Hide server technology
+    res.removeHeader("X-Powered-By"); // Double safety (if added elsewhere)
+    next();
+  });
+
+  // 3. Rate limiting
   app.use(apiRateLimiter);
 
-  // 4. Sanitize input before it hits your routes
-  app.use(xss()); // Prevent XSS (Cross-site scripting) attacks
-  app.use(mongoSanitize()); // Prevent NoSQL injection by removing MongoDB operator characters
+  // 4. Input sanitization
+  app.use(xss()); // Prevent XSS
+  app.use(mongoSanitize()); // Prevent NoSQL injection
 
-  // 5. CORS should be enabled before routes so cross-origin requests are properly handled
+  // 5. CORS setup
   app.use(cors(corsOptions));
 
-  // 6. Parse request bodies before hitting your routes
-  app.use(express.json({ limit: "10mb" })); // Parses incoming JSON payloads (with a size limit)
-  app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parses URL-encoded payloads (form data)
+  // 6. Body parsing
+  app.use(express.json({ limit: "10mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-  // 7. Compression after parsing to optimize responses
+  // 7. Response compression
   app.use(compression());
 
-  // 8a. Mount developer tools (Swagger UI) before app routes
+  // 8a. API docs
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  // 8b. Main application routes
+  // 8b. Routes
   app.use(appRouter);
 
-  // 9. Handle undefined routes (404) after routes
+  // 9. 404 handler
   app.use(invalidRouteHandler);
 
-  // 10. Global error handler should always be the last middleware
+  // 10. Error handler (last)
   app.use(errorHandler);
 };
