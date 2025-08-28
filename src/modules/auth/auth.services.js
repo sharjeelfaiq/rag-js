@@ -58,7 +58,7 @@ export const authServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Signed up successfully. Please verify your email address.",
     };
   },
@@ -128,7 +128,7 @@ export const authServices = {
     };
 
     return {
-      success: true,
+      status: "success",
       message: "Signed in successfully.",
       data,
     };
@@ -168,7 +168,7 @@ export const authServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Signed out successfully.",
     };
   },
@@ -202,7 +202,7 @@ export const authServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Reset password email sent successfully.",
     };
   },
@@ -231,7 +231,7 @@ export const authServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Password updated successfully.",
     };
   },

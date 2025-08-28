@@ -140,7 +140,7 @@ components:
                 $ref: "#/components/schemas/Notification"
               description: Array of user notifications sorted by latest first
           example:
-            success: true
+            status: "success"
             message: "Notifications retrieved successfully"
             data:
               - _id: "60d0fe4f5311236168a109ca"
@@ -167,7 +167,7 @@ components:
               $ref: "#/components/schemas/Notification"
               description: Updated notification object with read status set to true
           example:
-            success: true
+            status: "success"
             message: "Notification updated successfully"
             data:
               _id: "60d0fe4f5311236168a109ca"
@@ -235,7 +235,7 @@ components:
             invalidId:
               summary: Invalid ObjectId format
               value:
-                success: false
+                status: "error"
                 message: "Invalid ID format"
 
     Unauthorized:
@@ -248,12 +248,12 @@ components:
             missingToken:
               summary: No authentication token provided
               value:
-                success: false
+                status: "error"
                 message: "Authorization token missing or malformed."
             invalidToken:
               summary: Token expired or malformed
               value:
-                success: false
+                status: "error"
                 message: "Invalid or expired token"
 
     NotFound:
@@ -266,7 +266,7 @@ components:
             notificationNotFound:
               summary: Notification not found
               value:
-                success: false
+                status: "error"
                 message: "Notification not found"
 
     InternalServerError:
@@ -279,7 +279,7 @@ components:
             serverError:
               summary: General server error
               value:
-                success: false
+                status: "error"
                 message: "An error occurred while processing your request"
 
 security:

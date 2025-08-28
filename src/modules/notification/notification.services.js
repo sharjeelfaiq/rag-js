@@ -14,7 +14,7 @@ export const notificationServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Notifications retrieved successfully",
       data: userNotifications,
     };
@@ -30,7 +30,7 @@ export const notificationServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Notification updated successfully",
       data: updatedNotification,
     };

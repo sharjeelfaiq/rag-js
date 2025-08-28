@@ -42,7 +42,7 @@ export const otpServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "OTP sent successfully",
     };
   },
@@ -63,8 +63,8 @@ export const otpServices = {
 
     const comparisonResults = await Promise.all(
       existingOTPs.map((existingOTP) =>
-        bcrypt.compare(otp, existingOTP.otpHash),
-      ),
+        bcrypt.compare(otp, existingOTP.otpHash)
+      )
     );
 
     const isOTPValid = comparisonResults.some((result) => result === true);
@@ -74,7 +74,7 @@ export const otpServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "OTP verified successfully",
     };
   },

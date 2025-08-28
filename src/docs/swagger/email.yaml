@@ -151,12 +151,12 @@ components:
             invalidToken:
               summary: Token validation failed
               value:
-                success: false
+                status: "error"
                 message: "Invalid verification token"
             missingUserId:
               summary: Token missing userId field
               value:
-                success: false
+                status: "error"
                 message: "Token does not contain the user id"
 
     NotFound:
@@ -169,7 +169,7 @@ components:
             userNotFound:
               summary: User ID from token not found
               value:
-                success: false
+                status: "error"
                 message: "User not found"
 
     InternalServerError:
@@ -182,22 +182,22 @@ components:
             verificationFailed:
               summary: Email verification update failed
               value:
-                success: false
+                status: "error"
                 message: "An error occurred while verifying the email"
             tokenGenerationFailed:
               summary: JWT generation failed
               value:
-                success: false
+                status: "error"
                 message: "An error occurred while generating the token."
             emailSendFailed:
               summary: Email delivery failed
               value:
-                success: false
+                status: "error"
                 message: "Failed to send the welcome email."
             verificationEmailSendFailed:
               summary: Verification notification email failed
               value:
-                success: false
+                status: "error"
                 message: "Failed to send the verification email."
 
 paths:
@@ -274,7 +274,7 @@ paths:
                   - $ref: "#/components/schemas/BaseResponse"
                   - type: object
                     example:
-                      success: true
+                      status: "success"
                       message: "Verification email sent successfully"
         404:
           $ref: "#/components/responses/NotFound"

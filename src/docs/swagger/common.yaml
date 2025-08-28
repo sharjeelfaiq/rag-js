@@ -241,7 +241,7 @@ components:
             validationError:
               summary: Field validation failed
               value:
-                success: false
+                status: "error"
                 message: "Validation error occurred"
 
     Unauthorized:
@@ -254,12 +254,12 @@ components:
             missingToken:
               summary: No authentication token provided
               value:
-                success: false
+                status: "error"
                 message: "Authentication token is required"
             invalidToken:
               summary: Token expired or malformed
               value:
-                success: false
+                status: "error"
                 message: "Invalid or expired token"
 
     Forbidden:
@@ -272,7 +272,7 @@ components:
             insufficientPermissions:
               summary: User lacks required permissions
               value:
-                success: false
+                status: "error"
                 message: "Insufficient permissions"
 
     NotFound:
@@ -285,7 +285,7 @@ components:
             resourceNotFound:
               summary: Resource not found
               value:
-                success: false
+                status: "error"
                 message: "Resource not found"
 
     InternalServerError:
@@ -298,5 +298,5 @@ components:
             serverError:
               summary: Internal server error
               value:
-                success: false
+                status: "error"
                 message: "Internal server error occurred"

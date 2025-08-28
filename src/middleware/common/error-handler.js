@@ -7,7 +7,7 @@ export const errorHandler = async (error, _request, response, _next) => {
   const stack = error.stack || "No stack trace available";
 
   const responseBody = {
-    success: false,
+    status: "error",
     message,
     ...(IS_PROD_ENV ? {} : { stack }),
   };

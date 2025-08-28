@@ -9,7 +9,7 @@ export const userServices = {
     const users = await read.users();
 
     return {
-      success: true,
+      status: "success",
       message: "Users retrieved successfully",
       data: users,
     };
@@ -25,7 +25,7 @@ export const userServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "User retrieved successfully",
       data: user,
     };
@@ -48,7 +48,7 @@ export const userServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "User updated successfully",
       data: updatedUser,
     };
@@ -64,7 +64,7 @@ export const userServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "User deleted successfully",
     };
   },

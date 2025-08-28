@@ -763,7 +763,7 @@ export const newFeature = async (req, res) => {
   try {
     // Your logic here
     res.status(200).json({
-      success: true,
+      status: "success",
       message: "Feature executed successfully",
       data: result,
     });
@@ -815,7 +815,7 @@ const newSchema = new mongoose.Schema(
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  },
+  }
 );
 
 export default mongoose.model("NewModel", newSchema);

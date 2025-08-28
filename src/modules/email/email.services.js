@@ -80,7 +80,7 @@ export const emailServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "Verification email sent successfully",
     };
   },

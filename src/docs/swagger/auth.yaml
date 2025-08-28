@@ -202,7 +202,7 @@ components:
             data:
               $ref: "#/components/schemas/SignInResponseData"
           example:
-            success: true
+            status: "success"
             message: "Signed in successfully."
             data:
               id: "60d0fe4f5311236168a109ca"
@@ -220,7 +220,7 @@ components:
           schema:
             $ref: "#/components/schemas/BaseResponse"
           example:
-            success: true
+            status: "success"
             message: "Signed up successfully. Please verify your email address."
 
     SignInSuccess:
@@ -243,17 +243,17 @@ components:
             validationFailed:
               summary: Request validation failed
               value:
-                success: false
+                status: "error"
                 message: "Validation failed: Email is required, Password must be at least 8 characters long"
             emailExists:
               summary: Email already registered
               value:
-                success: false
+                status: "error"
                 message: "A user with this email already exists"
             tokenBlacklisted:
               summary: Token already blacklisted
               value:
-                success: false
+                status: "error"
                 message: "Token is already blacklisted"
 
     Unauthorized:
@@ -266,12 +266,12 @@ components:
             invalidCredentials:
               summary: Wrong email or password
               value:
-                success: false
+                status: "error"
                 message: "Invalid credentials"
             tokenMissingOrMalformed:
               summary: Missing or malformed authorization token
               value:
-                success: false
+                status: "error"
                 message: "Authorization token missing or malformed"
 
     Forbidden:
@@ -284,7 +284,7 @@ components:
             emailNotVerified:
               summary: Email verification pending
               value:
-                success: false
+                status: "error"
                 message: "Email not verified. A new verification link has been sent to your inbox"
 
     NotFound:
@@ -297,7 +297,7 @@ components:
             userNotFound:
               summary: No account with provided email
               value:
-                success: false
+                status: "error"
                 message: "User not found"
 
     InternalServerError:
@@ -310,27 +310,27 @@ components:
             userCreationFailed:
               summary: User creation failed
               value:
-                success: false
+                status: "error"
                 message: "Failed to create a new user"
             tokenGenerationFailed:
               summary: Token generation failed
               value:
-                success: false
+                status: "error"
                 message: "An error occurred while generating the token"
             emailSendFailed:
               summary: Email sending failed
               value:
-                success: false
+                status: "error"
                 message: "Failed to send the welcome email"
             passwordUpdateFailed:
               summary: Password update failed
               value:
-                success: false
+                status: "error"
                 message: "Password update failed"
             tokenBlacklistFailed:
               summary: Token blacklist operation failed
               value:
-                success: false
+                status: "error"
                 message: "An error occurred while blacklisting the accessToken"
 
   securitySchemes:
@@ -453,7 +453,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BaseResponse"
               example:
-                success: true
+                status: "success"
                 message: "Signed out successfully."
         400:
           $ref: "#/components/responses/BadRequest"
@@ -494,7 +494,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BaseResponse"
               example:
-                success: true
+                status: "success"
                 message: "Reset password email sent successfully."
         404:
           $ref: "#/components/responses/NotFound"
@@ -533,7 +533,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BaseResponse"
               example:
-                success: true
+                status: "success"
                 message: "Password updated successfully."
         400:
           $ref: "#/components/responses/BadRequest"

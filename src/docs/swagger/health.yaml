@@ -308,7 +308,7 @@ paths:
                 healthy:
                   summary: System is healthy
                   value:
-                    success: true
+                    status: "success"
                     message: "System operational"
                     data:
                       status: "healthy"
@@ -316,7 +316,7 @@ paths:
                 degraded:
                   summary: System is degraded
                   value:
-                    success: true
+                    status: "success"
                     message: "System degraded"
                     data:
                       status: "degraded"
@@ -368,7 +368,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/DetailedHealthResponse"
               example:
-                success: true
+                status: "success"
                 message: "System operational"
                 data:
                   status: "healthy"
@@ -398,7 +398,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
               example:
-                success: false
+                status: "error"
                 message: "Authorization token missing or malformed."
         503:
           description: System is degraded - one or more checks failed
@@ -410,7 +410,7 @@ paths:
                 highMemory:
                   summary: High memory usage
                   value:
-                    success: true
+                    status: "success"
                     message: "System degraded"
                     data:
                       status: "degraded"
@@ -436,7 +436,7 @@ paths:
                 databaseError:
                   summary: Database connection error
                   value:
-                    success: true
+                    status: "success"
                     message: "System degraded"
                     data:
                       status: "degraded"
@@ -462,7 +462,7 @@ paths:
                 databaseDisconnected:
                   summary: Database disconnected
                   value:
-                    success: true
+                    status: "success"
                     message: "System degraded"
                     data:
                       status: "degraded"

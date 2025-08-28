@@ -42,7 +42,7 @@ export const healthServices = {
     }
 
     return {
-      success: true,
+      status: "success",
       message: "System operational",
     };
   },
@@ -107,7 +107,7 @@ export const healthServices = {
     };
 
     return {
-      success: true,
+      status: "success",
       message: "System operational",
       data,
     };
