@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "license": "ISC",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
     "format": "prettier --write \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
     "lint:js": "eslint \"./dist/**/*.js\"",
     "check circularDeps": "npx madge --circular ./src",
     "seed": "node src/scripts/seed.js",
-    "generateTree": "pwsh generate-tree.ps1",
+    "generateTree": "powershell generate-tree.ps1",
     "generateReadme": "readmeai --repository . --badge-style FLAT-SQUARE --badge-color E92063 --header-style COMPACT --navigation-style ACCORDION --emojis RAINBOW --logo ICE"
   },
   "devDependencies": {
@@ -43,6 +43,10 @@
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",
     "xss-clean": "^0.1.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
   },
   "imports": {
     "#config/*": "./src/config/*",
