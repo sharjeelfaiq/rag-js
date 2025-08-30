@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 import { logger } from "./logger.config.js";
+import { DB_CONNECTION_STRING } from "#constants/index.js";
 import { globalUtils } from "#utils/index.js";
-import { DATABASE_URI } from "#constants/index.js";
 
 let isConnected = false;
 
@@ -14,12 +14,12 @@ export const connectDatabase = asyncHandler(async () => {
     return;
   }
 
-  const connection = await mongoose.connect(DATABASE_URI, {
+  const connection = await mongoose.connect(DB_CONNECTION_STRING, {
     serverSelectionTimeoutMS: 5000,
   });
 
   isConnected = !!connection.connections[0].readyState;
-  logger.info(`[connected] Database (url: ${DATABASE_URI})`.database);
+  logger.info(`[connected] Database (url: ${DB_CONNECTION_STRING})`.database);
 
   const db = mongoose.connection;
 
