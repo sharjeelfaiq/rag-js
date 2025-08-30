@@ -425,16 +425,13 @@ npm run seed
 
 ### 🔐 Authentication Endpoints
 
-| Method | Endpoint                           | Description               | Protected |
-| ------ | ---------------------------------- | ------------------------- | --------- |
-| POST   | `/api/v1/auth/register`            | Register new user         | No        |
-| POST   | `/api/v1/auth/login`               | User login                | No        |
-| POST   | `/api/v1/auth/logout`              | User logout               | Yes       |
-| POST   | `/api/v1/auth/refresh`             | Refresh JWT token         | No        |
-| POST   | `/api/v1/auth/forgot-password`     | Request password reset    | No        |
-| POST   | `/api/v1/auth/reset-password`      | Reset password with token | No        |
-| POST   | `/api/v1/auth/verify-email`        | Verify email with OTP     | No        |
-| POST   | `/api/v1/auth/resend-verification` | Resend verification email | No        |
+| Method | Endpoint                              | Description                  | Protected |
+| ------ | ------------------------------------- | ---------------------------- | --------- |
+| POST   | `/api/v1/auth/signup`                 | Register new user            | No        |
+| POST   | `/api/v1/auth/signin`                 | User login                   | No        |
+| POST   | `/api/v1/auth/signout`                | User logout                  | Yes       |
+| POST   | `/api/v1/auth/request-password-reset` | Request password reset email | No        |
+| POST   | `/api/v1/auth/update-password`        | Update password              | No        |
 
 **Example Registration Request:**
 
@@ -450,17 +447,14 @@ npm run seed
 
 ```json
 {
-  "success": true,
+  "status": "success",
   "message": "Login successful",
   "data": {
     "user": {
       "id": "user_id",
       "name": "John Doe",
-      "email": "john@example.com"
-    },
-    "tokens": {
-      "accessToken": "jwt_access_token",
-      "refreshToken": "jwt_refresh_token"
+      "email": "john@example.com",
+      "accessToken": "jwt_access_token"
     }
   }
 }
@@ -470,8 +464,15 @@ npm run seed
 
 | Method | Endpoint                                 | Description               | Protected |
 | ------ | ---------------------------------------- | ------------------------- | --------- |
-| GET    | `/api/v1/email/send-verification-token`  | Send verification email   | Yes       |
 | POST   | `/api/v1/email/check-verification-token` | Verify verification email | No        |
+| GET    | `/api/v1/email/send-verification-token`  | Send verification email   | No        |
+
+### ❤️ Health Check
+
+| Method | Endpoint          | Description                               | Protected |
+| ------ | ----------------- | ----------------------------------------- | --------- |
+| GET    | `/health/public`  | Check general health (publicly available) | No        |
+| GET    | `/health/private` | Check detailed health with diagnostics    | Yes       |
 
 ### 🔔 Notifications
 
@@ -505,18 +506,11 @@ npm run seed
 | PATCH  | `/api/v1/users/:id` | Update a user by id | Yes       |
 | DELETE | `/api/v1/users/:id` | Delete a user by id | Yes       |
 
-### ❤️ Health Check
-
-| Method | Endpoint          | Description                               | Protected |
-| ------ | ----------------- | ----------------------------------------- | --------- |
-| GET    | `/health/public`  | Check general health (publicly available) | No        |
-| GET    | `/health/private` | Check detailed health with diagnostics    | Yes       |
-
 **Example Response of Public Health Route:**
 
 ```json
 {
-  "success": true,
+  "status": "success",
   "message": "System operational",
   "data": {
     "status": "healthy",
