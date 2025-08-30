@@ -333,13 +333,16 @@ npm run seed
 │   │       ├── 📄 health.yaml
 │   │       └── 📄 notifications.yaml
 │   ├── 🗂️ middleware
-│   │   ├── 🗂️ global-middleware
+│   │   ├── 🗂️ common
+│   │   │   ├── 📄 colors.js
+│   │   │   ├── 📄 cors.js
 │   │   │   ├── 📄 error-handler.js
 │   │   │   ├── 📄 index.js
-│   │   │   └── 📄 invalid-route-handler.js
+│   │   │   ├── 📄 invalid-route-handler.js
+│   │   │   └── 📄 rate-limiter.js
 │   │   ├── 📄 index.js
-│   │   ├── 📄 upload.middleware.js
-│   │   └── 📄 validate.middleware.js
+│   │   ├── 📄 upload.js
+│   │   └── 📄 validator.js
 │   ├── 🗂️ models
 │   │   ├── 📄 blacklisted-token.model.js
 │   │   ├── 📄 index.js
@@ -351,8 +354,7 @@ npm run seed
 │   │   │   ├── 📄 auth.controllers.js
 │   │   │   ├── 📄 auth.dto.js
 │   │   │   ├── 📄 auth.routes.js
-│   │   │   ├── 📄 auth.services.js
-│   │   │   └── 📄 auth.validations.js
+│   │   │   └── 📄 auth.services.js
 │   │   ├── 🗂️ email
 │   │   │   ├── 📄 email.controllers.js
 │   │   │   ├── 📄 email.routes.js
@@ -379,15 +381,22 @@ npm run seed
 │   ├── 🗂️ scripts
 │   │   └── 📄 seed.js
 │   ├── 🗂️ server
-│   │   └── 📄 index.js
-│   ├── 🗂️ utils
-│   │   ├── 📄 global.utils.js
+│   │   ├── 📄 app.js
+│   │   ├── 📄 backend.server.js
 │   │   ├── 📄 index.js
-│   │   ├── 📄 mail.utils.js
-│   │   ├── 📄 otp.utils.js
-│   │   ├── 📄 password.utils.js
-│   │   ├── 📄 token.utils.js
-│   │   └── 📄 username.utils.js
+│   │   └── 📄 socket.server.js
+│   ├── 🗂️ utils
+│   │   ├── 🗂️ auth
+│   │   │   ├── 📄 otp.utils.js
+│   │   │   ├── 📄 password.utils.js
+│   │   │   ├── 📄 token.utils.js
+│   │   │   └── 📄 username.utils.js
+│   │   ├── 🗂️ communication
+│   │   │   └── 📄 mail.utils.js
+│   │   ├── 🗂️ core
+│   │   │   ├── 📄 common.utils.js
+│   │   │   └── 📄 validations.utils.js
+│   │   └── 📄 index.js
 │   ├── 🗂️ views
 │   │   ├── 🗂️ otp-email
 │   │   │   └── 📄 index.html
@@ -408,7 +417,7 @@ npm run seed
 └── 📄 README.md
 ```
 
----
+## **Note:** You can generate the project structure tree by running `./generate-tree.ps1` script.
 
 ## 📖 API Documentation
 

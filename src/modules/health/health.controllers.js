@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { healthServices } from "./health.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const healthControllers = {
   checkHealth: routesAsyncHandler(async (_request, response) => {

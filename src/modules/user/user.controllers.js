@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { userServices } from "./user.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const userControllers = {
   getUsers: routesAsyncHandler(async (_request, response) => {
@@ -22,7 +22,7 @@ export const userControllers = {
     const responseBody = await userServices.updateById(
       requestParams,
       requestFiles,
-      requestBody,
+      requestBody
     );
     response.status(200).json(responseBody);
   }),

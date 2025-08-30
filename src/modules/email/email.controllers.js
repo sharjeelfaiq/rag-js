@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { emailServices } from "./email.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const emailControllers = {
   checkVerificationToken: routesAsyncHandler(async (request, response) => {

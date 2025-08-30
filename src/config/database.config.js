@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 import { logger } from "./logger.config.js";
 import { DB_CONNECTION_STRING } from "#constants/index.js";
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 
 let isConnected = false;
 
-const { asyncHandler } = globalUtils;
+const { asyncHandler } = commonUtils;
 
 export const connectDatabase = asyncHandler(async () => {
   if (isConnected) {

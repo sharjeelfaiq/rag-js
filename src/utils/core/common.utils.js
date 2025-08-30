@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-export const globalUtils = {
+export const commonUtils = {
   // 🟡 For Express middleware or route handlers
   routesAsyncHandler: (fn) => async (request, response, next) => {
     try {

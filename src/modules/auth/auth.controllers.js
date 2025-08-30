@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { authServices } from "./auth.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const authControllers = {
   signUp: routesAsyncHandler(async (request, response) => {

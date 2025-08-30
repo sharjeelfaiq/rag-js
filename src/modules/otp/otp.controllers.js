@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { otpServices } from "./otp.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const otpControllers = {
   send: routesAsyncHandler(async (request, response) => {

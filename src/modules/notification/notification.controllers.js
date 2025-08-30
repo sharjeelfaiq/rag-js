@@ -1,7 +1,7 @@
-import { globalUtils } from "#utils/index.js";
+import { commonUtils } from "#utils/index.js";
 import { notificationServices } from "./notification.services.js";
 
-const { routesAsyncHandler } = globalUtils;
+const { routesAsyncHandler } = commonUtils;
 
 export const notificationControllers = {
   getNotificationsByUserId: routesAsyncHandler(async (request, response) => {

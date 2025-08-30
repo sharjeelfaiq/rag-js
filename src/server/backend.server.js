@@ -10,6 +10,6 @@ export const createBackendServer = async (server, app) => {
   applyMiddleware(app, appRouter);
 
   server.listen(PORT || 5000, () => {
-    logger.info(`[connected] Server (url: ${BACKEND_URL})`.server);
+    logger.info(`[connected] Backend (url: ${BACKEND_URL})`.server);
   });
 };

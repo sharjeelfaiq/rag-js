@@ -1,4 +1,4 @@
-export * from "./core/global.utils.js";
+export * from "./core/common.utils.js";
 export * from "./core/validations.utils.js";
 export * from "./communication/mail.utils.js";
 export * from "./auth/token.utils.js";
