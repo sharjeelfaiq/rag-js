@@ -17,6 +17,7 @@ const validators = {
 
   DATABASE_URI: url({ desc: "MongoDB connection string" }),
   DATABASE_NAME: str({ desc: "MongoDB database name" }),
+
   JWT_SECRET_KEY: str({
     devDefault: testOnly("test-secret"),
     desc: "JWT secret key",
