@@ -5,7 +5,7 @@ import {
   passwordValidation,
   roleValidation,
   tokenValidation,
-} from "./auth.validations.js";
+} from "#utils/index.js";
 
 export const authDto = {
   signUpDto: Joi.object({
