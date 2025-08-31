@@ -133,7 +133,7 @@ This **MERN Backend Starter Kit** is a complete, production-ready Express.js ser
 
 ### 🛡️ **Production-Ready Security & Middleware Stack**
 
-**Global Security Middleware Chain:**
+**Security Middleware Chain:**
 
 - **Helmet** → Security headers protection (XSS, clickjacking, MIME sniffing)
 - **XSS-Clean** → Sanitizes user input to prevent Cross-Site Scripting attacks
@@ -221,7 +221,10 @@ This **MERN Backend Starter Kit** is a complete, production-ready Express.js ser
 
 ### 📦 Installation
 
-1. **Extract the downloaded files** to your desired directory
+1. **Clone the repository** to your desired directory
+   ```bash
+   git clone https://github.com/sharjeelfaiq/mern-backend-starter-js.git
+   ```
 2. **Open terminal/command prompt** in the project folder
 3. **Install dependencies:**
    ```bash
@@ -230,43 +233,10 @@ This **MERN Backend Starter Kit** is a complete, production-ready Express.js ser
 
 ### ⚙️ Configuration
 
-1. **Create environment file:**
+1. **Create environment files** - an example is provided in `.env.example`
 
    ```bash
-   cp .env.example .env
-   ```
-
-2. **Configure your `.env` file:**
-
-   ```env
-   # Server Configuration
-   PORT=5000
-   NODE_ENV=development
-
-   # Database
-   MONGODB_URI=mongodb://localhost:27017/mern-starter
-
-   # JWT Secrets
-   JWT_SECRET=your-super-secret-jwt-key-here
-   JWT_REFRESH_SECRET=your-refresh-secret-here
-   JWT_EXPIRES_IN=7d
-   JWT_REFRESH_EXPIRES_IN=30d
-
-   # Email Configuration (Gmail example)
-   EMAIL_HOST=smtp.gmail.com
-   EMAIL_PORT=587
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASS=your-app-password
-   EMAIL_FROM=your-email@gmail.com
-
-   # Cloudinary (for file uploads)
-   CLOUDINARY_CLOUD_NAME=your-cloud-name
-   CLOUDINARY_API_KEY=your-api-key
-   CLOUDINARY_API_SECRET=your-api-secret
-
-   # App URLs
-   FRONTEND_URL=http://localhost:3000
-   BACKEND_URL=http://localhost:5000
+   cp .env.development .env.production
    ```
 
 ### 🚀 Running the Server
@@ -755,178 +725,6 @@ BACKEND_URL=https://your-production-backend.com
 ```
 
 ---
-
-## 🛠️ Customization
-
-### Adding New Routes
-
-```javascript
-// 1. Create controller in src/modules/feature/feature.controller.js
-export const newFeature = async (req, res) => {
-  try {
-    // Your logic here
-    res.status(200).json({
-      status: "success",
-      message: "Feature executed successfully",
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-// 2. Add route in src/modules/feature/feature.routes.js
-import { Router } from "express";
-import { newFeature } from "./feature.controller.js";
-import { authMiddleware } from "#middleware/global.middleware.js";
-
-const router = Router();
-router.get("/new-feature", authMiddleware, newFeature);
-
-export default router;
-
-// 3. Register route in src/routes/index.js
-import featureRoutes from "#modules/feature/feature.routes.js";
-app.use("/api/v1/feature", featureRoutes);
-
-// 4. Update Swagger docs in docs/swagger/feature/
-```
-
-### Adding New Models
-
-```javascript
-// src/models/newModel.js
-import mongoose from "mongoose";
-
-const newSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, "Name is required"],
-      trim: true,
-    },
-    description: {
-      type: String,
-      maxlength: [500, "Description cannot exceed 500 characters"],
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  {
-    timestamps: true,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
-);
-
-export default mongoose.model("NewModel", newSchema);
-```
-
-### Custom Middleware
-
-```javascript
-// src/middleware/custom.middleware.js
-export const customMiddleware = (req, res, next) => {
-  try {
-    // Your custom logic here
-    console.log("Custom middleware executed");
-
-    // Modify request or response
-    req.customData = "some data";
-
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Usage in routes
-import { customMiddleware } from "#middleware/custom.middleware.js";
-router.get("/protected-route", authMiddleware, customMiddleware, controller);
-```
-
-### Adding New Validation Schemas
-
-```javascript
-// src/dtos/feature.dto.js
-import Joi from "joi";
-
-export const createFeatureDTO = Joi.object({
-  name: Joi.string().min(3).max(50).required().messages({
-    "string.min": "Name must be at least 3 characters long",
-    "string.max": "Name cannot exceed 50 characters",
-    "any.required": "Name is required",
-  }),
-
-  email: Joi.string().email().required().messages({
-    "string.email": "Please provide a valid email address",
-    "any.required": "Email is required",
-  }),
-});
-
-// Usage in controller
-import { validateDTO } from "#middleware/validate.middleware.js";
-import { createFeatureDTO } from "#dtos/feature.dto.js";
-
-router.post("/create", validateDTO(createFeatureDTO), createFeatureController);
-```
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues & Solutions
-
-**🔴 "MongoDB connection failed"**
-
-```bash
-# Check MongoDB status
-systemctl status mongod  # Linux
-brew services list | grep mongodb  # macOS
-
-# Solutions:
-✅ Verify MONGODB_URI in .env file
-✅ Ensure MongoDB service is running
-✅ Check database user permissions
-✅ Verify network connectivity (for Atlas)
-✅ Check IP whitelist settings (for Atlas)
-```
-
-**🔴 "JWT token invalid"**
-
-```bash
-# Common causes and solutions:
-✅ Check JWT_SECRET is set in .env
-✅ Verify token format: "Bearer {token}"
-✅ Check token expiration
-✅ Ensure consistent secret across restarts
-✅ Clear browser localStorage if using frontend
-```
-
-**🔴 "Email sending failed"**
-
-```bash
-# Common causes and solutions:
-✅ Verify email credentials in .env file
-✅ Use App Password for Gmail (not regular password)
-✅ Enable "Less secure app access" or use OAuth2
-✅ Check SMTP server settings
-✅ Verify firewall/antivirus isn't blocking SMTP
-✅ Test with a different email provider
-```
-
-**🔴 "File upload not working"**
-
-```bash
-# Debugging steps:
-✅ Verify Cloudinary credentials in .env
-✅ Check file size (max 5MB by default)
-✅ Ensure proper Content-Type headers
-✅ Verify multer middleware is applied
-✅ Check network connectivity to Cloudinary
-```
 
 **🔴 "Port already in use"**
 
