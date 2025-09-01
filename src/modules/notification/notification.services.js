@@ -1,7 +1,7 @@
-import { dataAccess } from "#data-access/index.js";
+import { repository } from "#repository/index.js";
 import createError from "http-errors";
 
-const { read, update } = dataAccess;
+const { read, update } = repository;
 
 export const notificationServices = {
   getNotificationsByUserId: async (requestParams) => {

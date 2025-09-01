@@ -1,6 +1,6 @@
 import { NotificationModel } from "#models/index.js";
 
-export const notificationDataAccess = {
+export const notificationRepository = {
   read: {
     notificationByUserId: (userId) => {
       return NotificationModel.find({ user: userId })

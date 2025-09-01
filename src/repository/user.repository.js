@@ -5,7 +5,7 @@ import { UserModel } from "#models/index.js";
 
 const { isValidObjectId } = mongoose;
 
-export const userDataAccess = {
+export const userRepository = {
   read: {
     users: () => {
       return UserModel.find().exec();

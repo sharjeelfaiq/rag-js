@@ -2,7 +2,7 @@ import createError from "http-errors";
 
 import { tokenUtils } from "#utils/index.js";
 
-export const validate = {
+export const validateMiddleware = {
   accessToken: (req, _res, next) => {
     const authHeader = req.headers.authorization;
 

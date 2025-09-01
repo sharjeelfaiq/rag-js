@@ -1,10 +1,10 @@
 import createError from "http-errors";
 
 import { tokenUtils, sendEmail } from "#utils/index.js";
-import { dataAccess } from "#data-access/index.js";
+import { repository } from "#repository/index.js";
 import { env } from "#config/index.js";
 
-const { read, update, remove } = dataAccess;
+const { read, update, remove } = repository;
 const { FRONTEND_URL } = env;
 
 export const emailServices = {

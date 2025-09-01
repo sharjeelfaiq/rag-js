@@ -1,6 +1,6 @@
 import { BlacklistedTokenModel } from "#models/index.js";
 
-export const blacklistedTokenDataAccess = {
+export const blacklistedTokenRepository = {
   write: {
     blacklistedToken: (data) => {
       const { accessToken, userId, expiresAt } = data;

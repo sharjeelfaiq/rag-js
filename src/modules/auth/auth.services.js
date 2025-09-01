@@ -1,10 +1,10 @@
 import createError from "http-errors";
 
 import { tokenUtils, sendEmail, passwordUtils } from "#utils/index.js";
-import { dataAccess } from "#data-access/index.js";
+import { repository } from "#repository/index.js";
 import { env } from "#config/index.js";
 
-const { write, read, update, remove } = dataAccess;
+const { write, read, update, remove } = repository;
 const { BACKEND_URL } = env;
 
 export const authServices = {

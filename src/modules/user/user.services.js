@@ -1,8 +1,8 @@
 import createError from "http-errors";
 
-import { dataAccess } from "#data-access/index.js";
+import { repository } from "#repository/index.js";
 
-const { read, update, remove } = dataAccess;
+const { read, update, remove } = repository;
 
 export const userServices = {
   getUsers: async () => {

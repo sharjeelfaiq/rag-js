@@ -289,12 +289,12 @@ npm run seed
 │   │   └── 📄 swagger.config.js
 │   ├── 🗂️ constants
 │   │   └── 📄 index.js
-│   ├── 🗂️ data-access
-│   │   ├── 📄 blacklisted-token.data-access.js
+│   ├── 🗂️ repository
+│   │   ├── 📄 blacklisted-token.repository.js
 │   │   ├── 📄 index.js
-│   │   ├── 📄 notification.data-access.js
-│   │   ├── 📄 otp.data-access.js
-│   │   └── 📄 user.data-access.js
+│   │   ├── 📄 notification.repository.js
+│   │   ├── 📄 otp.repository.js
+│   │   └── 📄 user.repository.js
 │   ├── 🗂️ docs
 │   │   └── 🗂️ swagger
 │   │       ├── 📄 auth.yaml
@@ -511,7 +511,7 @@ import { dbConfig } from "#config/index.js";
 
 - `#config/*` → `./src/config/*`
 - `#constants/*` → `./src/constants/*`
-- `#data-access/*` → `./src/data-access/*`
+- `#repository/*` → `./src/repository/*`
 - `#dtos/*` → `./src/dtos/*`
 - `#middleware/*` → `./src/middleware/*`
 - `#models/*` → `./src/models/*`

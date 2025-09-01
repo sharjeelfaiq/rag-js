@@ -7,15 +7,16 @@ import swaggerUi from "swagger-ui-express";
 import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 
-// eslint-disable-next-line no-unused-vars
-import { logTheme } from "./colors.js";
-import { corsOptions } from "./cors.js";
+import {
+  logTheme,
+  corsOptions,
+  errorHandler,
+  apiRateLimiter,
+  invalidRouteHandler,
+} from "./middleware-config/index.js";
 import { swaggerSpec } from "#config/index.js";
-import { errorHandler } from "./error-handler.js";
-import { apiRateLimiter } from "./rate-limiter.js";
-import { invalidRouteHandler } from "./invalid-route-handler.js";
 
-export const applyMiddleware = (app, appRouter) => {
+export const commonMiddleware = (app, appRouter) => {
   app.use(morgan("common")); // Log HTTP requests ✅ Always keep
   app.use(helmet()); // Set secure HTTP headers ✅ Always keep
   app.use(apiRateLimiter); // Apply rate limiting ⚠️ Only for public APIs

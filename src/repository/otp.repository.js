@@ -1,6 +1,6 @@
 import { OTPModel } from "#models/index.js";
 
-export const otpDataAccess = {
+export const otpRepository = {
   read: {
     otp: async (id) => {
       return await OTPModel.find({ id }).sort({ createdAt: -1 }).limit(1);

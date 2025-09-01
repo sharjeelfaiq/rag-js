@@ -51,7 +51,7 @@
   "imports": {
     "#config/*": "./src/config/*",
     "#constants/*": "./src/constants/*",
-    "#data-access/*": "./src/data-access/*",
+    "#repository/*": "./src/repository/*",
     "#middleware/*": "./src/middleware/*",
     "#models/*": "./src/models/*",
     "#modules/*": "./src/modules/*",
