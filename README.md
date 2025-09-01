@@ -289,12 +289,6 @@ npm run seed
 │   │   └── 📄 swagger.config.js
 │   ├── 🗂️ constants
 │   │   └── 📄 index.js
-│   ├── 🗂️ repository
-│   │   ├── 📄 blacklisted-token.repository.js
-│   │   ├── 📄 index.js
-│   │   ├── 📄 notification.repository.js
-│   │   ├── 📄 otp.repository.js
-│   │   └── 📄 user.repository.js
 │   ├── 🗂️ docs
 │   │   └── 🗂️ swagger
 │   │       ├── 📄 auth.yaml
@@ -303,7 +297,7 @@ npm run seed
 │   │       ├── 📄 health.yaml
 │   │       └── 📄 notifications.yaml
 │   ├── 🗂️ middleware
-│   │   ├── 🗂️ common
+│   │   ├── 🗂️ common-middleware
 │   │   │   ├── 📄 colors.js
 │   │   │   ├── 📄 cors.js
 │   │   │   ├── 📄 error-handler.js
@@ -311,8 +305,8 @@ npm run seed
 │   │   │   ├── 📄 invalid-route-handler.js
 │   │   │   └── 📄 rate-limiter.js
 │   │   ├── 📄 index.js
-│   │   ├── 📄 upload.js
-│   │   └── 📄 validator.js
+│   │   ├── 📄 upload.middleware.js
+│   │   └── 📄 validator.middleware.js
 │   ├── 🗂️ models
 │   │   ├── 📄 blacklisted-token.model.js
 │   │   ├── 📄 index.js
@@ -346,6 +340,12 @@ npm run seed
 │   │   │   ├── 📄 user.routes.js
 │   │   │   └── 📄 user.services.js
 │   │   └── 📄 index.js
+│   ├── 🗂️ repository
+│   │   ├── 📄 blacklisted-token.repository.js
+│   │   ├── 📄 index.js
+│   │   ├── 📄 notification.repository.js
+│   │   ├── 📄 otp.repository.js
+│   │   └── 📄 user.repository.js
 │   ├── 🗂️ routes
 │   │   └── 📄 index.js
 │   ├── 🗂️ scripts
@@ -378,7 +378,6 @@ npm run seed
 │   │       └── 📄 index.html
 │   └── 📄 index.js
 ├── 📄 eslint.config.js
-├── 📄 generate-tree.ps1
 ├── 📄 LICENSE
 ├── 📄 MERN Backend Starter.postman_collection.json
 ├── 📄 nodemon.json
@@ -386,8 +385,6 @@ npm run seed
 ├── 📄 package.json
 └── 📄 README.md
 ```
-
-## **Note:** You can generate the project structure tree by running `./generate-tree.ps1` script.
 
 ## 📖 API Documentation
 
