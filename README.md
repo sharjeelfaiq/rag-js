@@ -838,77 +838,7 @@ node --inspect src/index.js
 
 ---
 
-## 📞 Support
-
-**📧 Primary Support:** Available through CodeCanyon messaging system
-
-**📖 Self-Help Resources:**
-
-- This comprehensive README documentation
-- Interactive Swagger API documentation at `/api-docs`
-- Complete Postman collection with examples
-- Detailed code comments throughout the project
-
-**🐛 Bug Reports:** Report issues through CodeCanyon comments with:
-
-- Node.js version (`node --version`)
-- NPM version (`npm --version`)
-- Operating system and version
-- Complete error messages (with stack traces)
-- Steps to reproduce the issue
-- Your `.env` configuration (excluding sensitive data)
-
-**💡 Feature Requests:** Suggest new features through CodeCanyon comments
-
-**📚 Documentation Updates:** Request documentation improvements or clarifications
-
-**⚡ Response Time:** Within 24-48 hours on business days (Monday-Friday, UTC)
-
-**🔧 Premium Support Available:**
-
-- Priority response (within 12 hours)
-- Custom feature development
-- One-on-one deployment assistance
-- Code review services
-- Architecture consulting
-
-**Community Resources:**
-
-- CodeCanyon comment section for community discussions
-- Share your projects and implementations
-- Help other users with their questions
-
----
-
-## 🔄 Changelog
-
 ### Version 1.0.0 (Current - January 2025)
-
-#### ✨ Initial Release Features
-
-- ✅ Complete JWT-based authentication system with refresh tokens
-- ✅ Professional email workflows with 4 HTML templates
-- ✅ File upload system with Cloudinary integration
-- ✅ In-app notification management system
-- ✅ Health check endpoints for monitoring
-- ✅ Interactive Swagger API documentation
-- ✅ Complete Postman collection with automated tests
-- ✅ Production-ready security middleware stack
-- ✅ 8-layer enterprise architecture
-- ✅ Comprehensive utility library
-- ✅ ES6 modules with clean import paths
-- ✅ Professional logging with Winston
-- ✅ Development tools: ESLint, Prettier, Nodemon
-- ✅ Database seeding scripts
-- ✅ Joi validation with DTOs
-- ✅ Rate limiting and security headers
-- ✅ CORS configuration
-- ✅ Error handling middleware
-- ✅ MongoDB integration with Mongoose
-- ✅ OTP system with email delivery
-- ✅ Password reset functionality
-- ✅ Token blacklisting for secure logout
-- ✅ Commercial license included
 
 #### 🏗️ Architecture Highlights
 
@@ -932,61 +862,11 @@ node --inspect src/index.js
 - Input sanitization
 - CORS protection
 
-### Planned Updates (Roadmap 2025)
-
-#### Version 1.1.0 (Q2 2025)
-
-- 🔄 Real-time features with Socket.io integration
-- 🔄 Redis caching for improved performance
-- 🔄 Advanced rate limiting with Redis store
-- 🔄 API versioning improvements
-- 🔄 Enhanced monitoring and metrics
-- 🔄 Docker containerization
-- 🔄 CI/CD pipeline templates
-
-#### Version 1.2.0 (Q3 2025)
-
-- 🔄 Social authentication (Google, Facebook, GitHub)
-- 🔄 Two-factor authentication (2FA)
-- 🔄 Advanced role-based permissions
-- 🔄 Audit logging system
-- 🔄 Advanced email templates with themes
-- 🔄 File processing and image optimization
-- 🔄 Webhook system for integrations
-
-#### Version 1.3.0 (Q4 2025)
-
-- 🔄 GraphQL API alongside REST
-- 🔄 Microservices architecture option
-- 🔄 Advanced caching strategies
-- 🔄 Real-time analytics dashboard
-- 🔄 Multi-tenant support
-- 🔄 Advanced search functionality
-- 🔄 API gateway integration
-
-**Update Policy:**
-
-- All existing customers receive free updates
-- Backward compatibility maintained
-- Migration guides provided for breaking changes
-- Feature requests from customers prioritized
-
-**Stay Updated:**
-
-- Follow CodeCanyon item page for update notifications
-- Check changelog regularly for new features
-- Participate in community discussions for feature voting
-
 ---
 
 <div align="center">
 
 ## 🌟 **Thank You for Choosing MERN Backend Starter Kit!** 🌟
-
-**⭐ Rate this item on CodeCanyon if it helped you save development time!**
-
-**💬 Questions? Comments? Feature requests?**  
-**Use the CodeCanyon comments section - I read and respond to everything!**
 
 **🚀 Built something amazing with this starter kit?**  
 **Share your success story in the comments - I love seeing what you create!**
