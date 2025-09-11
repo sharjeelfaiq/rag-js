@@ -27,7 +27,7 @@ export const notificationRepository = {
       return NotificationModel.findByIdAndUpdate(
         notiId,
         { $set: { read: readStatus } },
-        { new: true, runValidators: true } // returns the updated document
+        { new: true, runValidators: true }, // returns the updated document
       ).exec();
     },
   },

@@ -22,7 +22,7 @@ export const userControllers = {
     const responseBody = await userServices.updateById(
       requestParams,
       requestFiles,
-      requestBody
+      requestBody,
     );
     response.status(200).json(responseBody);
   }),

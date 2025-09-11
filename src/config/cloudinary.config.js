@@ -17,14 +17,14 @@ cloudinary.config({
 cloudinary.api.ping((error) => {
   if (error) {
     logger.error(
-      `[connection_failed] Cloudinary (error: ${error.message})`.error
+      `[connection_failed] Cloudinary (error: ${error.message})`.error,
     );
 
     return;
   }
 
   logger.info(
-    `[connected] Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service
+    `[connected] Cloudinary (cloud name: ${CLOUDINARY_CLOUD_NAME})`.service,
   );
 });
 

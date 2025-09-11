@@ -13,10 +13,10 @@ authRoutes
   .post(
     "/request-password-reset",
     validate.dto(authDto.passwordResetRequestDto),
-    authControllers.requestPasswordReset
+    authControllers.requestPasswordReset,
   )
   .patch(
     "/update-password",
     validate.dto(authDto.passwordUpdateDto),
-    authControllers.updatePassword
+    authControllers.updatePassword,
   );

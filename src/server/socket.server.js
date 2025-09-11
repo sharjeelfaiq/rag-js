@@ -17,7 +17,7 @@ const createSocketServer = (httpServer) => {
 
     socket.on("connect_error", (error) => {
       logger.error(
-        `[connection_failed] Socket (error: ${error.message})`.error
+        `[connection_failed] Socket (error: ${error.message})`.error,
       );
     });
 

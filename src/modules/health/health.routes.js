@@ -10,5 +10,5 @@ healthRoutes
   .get(
     "/private",
     validateMiddleware.accessToken,
-    healthControllers.checkDetailedHealth
+    healthControllers.checkDetailedHealth,
   );

@@ -9,7 +9,7 @@ const emailValidation = Joi.string().email().trim().lowercase().messages({
 
 const passwordValidation = Joi.string()
   .pattern(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
   )
   .messages({
     "string.pattern.base":

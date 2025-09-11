@@ -39,7 +39,7 @@ export const connectDatabase = asyncHandler(async () => {
 
   db.on("error", (error) => {
     logger.error(
-      `[connection_failed] Database (error: ${error.message})`.error
+      `[connection_failed] Database (error: ${error.message})`.error,
     );
 
     process.exit(1);
