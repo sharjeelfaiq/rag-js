@@ -1,12 +1,16 @@
 import mongoose from "mongoose";
 
 import { logger } from "./logger.config.js";
-import { DB_CONNECTION_STRING } from "#constants/index.js";
 import { commonUtils } from "#utils/index.js";
+import { env } from "./env.config.js";
 
 let isConnected = false;
 
 const { asyncHandler } = commonUtils;
+
+const { DATABASE_URI, DATABASE_NAME } = env;
+
+const DB_CONNECTION_STRING = `${DATABASE_URI}/${DATABASE_NAME}`;
 
 export const connectDatabase = asyncHandler(async () => {
   if (isConnected) {

@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "format": "prettier --write \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
-    "lint:js": "eslint \"./dist/**/*.js\"",
+    "lint:js": "eslint \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
     "check circularDeps": "npx madge --circular ./src",
     "seed": "node src/scripts/seed.js"
   },
