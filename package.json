@@ -9,8 +9,7 @@
     "format": "prettier --write \"./**/*.{js,jsx,html,yaml,env,md,json,txt}\"",
     "lint:js": "eslint \"./dist/**/*.js\"",
     "check circularDeps": "npx madge --circular ./src",
-    "seed": "node src/scripts/seed.js",
-    "generateReadme": "readmeai --repository . --badge-style FLAT-SQUARE --badge-color E92063 --header-style COMPACT --navigation-style ACCORDION --emojis RAINBOW --logo ICE"
+    "seed": "node src/scripts/seed.js"
   },
   "devDependencies": {
     "eslint": "^9.20.0",
