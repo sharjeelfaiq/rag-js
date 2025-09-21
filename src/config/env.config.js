@@ -33,6 +33,8 @@ const validators = {
   CLOUDINARY_CLOUD_NAME: str({ desc: "Cloudinary cloud name" }),
   CLOUDINARY_API_KEY: str({ desc: "Cloudinary API key" }),
   CLOUDINARY_API_SECRET: str({ desc: "Cloudinary API secret" }),
+
+  OPENAI_API_KEY: str({ desc: "OpenAI API key" }),
 };
 
 export const env = cleanEnv(process.env, validators, {

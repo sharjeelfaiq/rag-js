@@ -1,21 +1,24 @@
 import { blacklistedTokenRepository } from "./blacklisted-token.repository.js";
 import { notificationRepository } from "./notification.repository.js";
-import { userRepository } from "./user.repository.js";
 import { otpRepository } from "./otp.repository.js";
+import { ragRepository } from "./rag.repository.js";
+import { userRepository } from "./user.repository.js";
 
 export const repository = {
   read: {
     ...blacklistedTokenRepository.read,
     ...notificationRepository.read,
-    ...userRepository.read,
     ...otpRepository.read,
+    ...ragRepository.read,
+    ...userRepository.read,
   },
 
   write: {
     ...blacklistedTokenRepository.write,
     ...notificationRepository.write,
-    ...userRepository.write,
     ...otpRepository.write,
+    ...ragRepository.write,
+    ...userRepository.write,
   },
 
   update: {
@@ -24,6 +27,7 @@ export const repository = {
   },
 
   remove: {
+    ...ragRepository.remove,
     ...userRepository.remove,
   },
 };

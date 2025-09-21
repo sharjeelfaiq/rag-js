@@ -58,7 +58,7 @@ const main = async () => {
     logger.info("Seeding complete.");
     process.exit(0);
   } catch (error) {
-    logger.error("Seeding failed:", error);
+    logger.error(`Seeding failed: ${error}`);
     process.exit(1);
   }
 };

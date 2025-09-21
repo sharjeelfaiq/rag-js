@@ -6,6 +6,7 @@ import {
   healthRoutes,
   notificationRoutes,
   otpRoutes,
+  ragRoutes,
   userRoutes,
 } from "#modules/index.js";
 import { validateMiddleware as validate } from "#middleware/index.js";
@@ -26,6 +27,7 @@ v1Router.use("/auth", authRoutes);
 v1Router.use("/email", emailRoutes);
 v1Router.use("/notifications", validate.accessToken, notificationRoutes);
 v1Router.use("/otp", otpRoutes);
+v1Router.use("/rag", ragRoutes);
 v1Router.use("/users", validate.accessToken, userRoutes);
 
 export default appRouter;
